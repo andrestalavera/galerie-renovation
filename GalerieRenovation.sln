@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalerieRenovation.Web", "GalerieRenovation.Web\GalerieRenovation.Web.csproj", "{B041B581-27D1-4CFD-BB3C-C15FFF4F27C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalerieRenovation.Models", "GalerieRenovation.Models\GalerieRenovation.Models.csproj", "{B482AFD5-D455-41D5-A096-35FCF4121669}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{B041B581-27D1-4CFD-BB3C-C15FFF4F27C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B041B581-27D1-4CFD-BB3C-C15FFF4F27C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B041B581-27D1-4CFD-BB3C-C15FFF4F27C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B482AFD5-D455-41D5-A096-35FCF4121669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B482AFD5-D455-41D5-A096-35FCF4121669}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B482AFD5-D455-41D5-A096-35FCF4121669}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B482AFD5-D455-41D5-A096-35FCF4121669}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
