@@ -1,27 +1,22 @@
-[
+
   {
     "uniqueId": "home",
     "Items": [
       {
         "ImageUrl": "img3.jpeg",
-        "Description": "t1"
+        "Description": "t1",
+        "Active": true
       },
       {
         "ImageUrl": "img4.jpeg",
-        "Description": "test1"
+        "Description": "test1",
+        "Active": false
       },
       {
         "ImageUrl": "img5.jpeg",
-        "Description": "test2"
-      },
-      {
-        "ImageUrl": "img6.jpeg",
-        "Description": "test3"
-      },
-      {
-        "ImageUrl": "img7.jpeg",
-        "Description": "description test"
+        "Description": "test2",
+        "Active": false
       }
+  
     ]
   }
-]
