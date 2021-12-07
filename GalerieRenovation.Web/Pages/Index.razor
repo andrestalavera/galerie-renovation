@@ -1,9 +1,64 @@
 ﻿@page "/"
-
+@inject HttpClient Http
 <PageTitle>Index</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+<!-- Caroussel -->
+<div id="@carousel.UniqueIds" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <!-- foreach carousel.Items  voir pourquoi ça ne fonctionne pas -->
+        @for (var i = 0; i < carousel.Items.Count(); i++)
+        { 
+            if(i == 0)
+            {<button type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide-to="@i" class="active" aria-current="true" aria-label="Slide 1"></button>
+            }
+            else
+            {
+              <button type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide-to="@i" aria-label="test"></button>  
+            }
+        }
+        
+        
+    </div>
+    <div class="carousel-inner" style="max-height: 850px;min-height: 276px">
+        <!--max-height: 850px;min-height: 276px-->
+        @foreach (var item in carousel.Items)
+        {
+            <div class="carousel-item">
+                <img src="images/@(item.ImageUrl)" class="d-block  w-100" alt="">
+            </div>
+        }
+        <div class="carousel-item active">
+            <img src="images/img4.jpeg" class="d-block  w-100" alt="">
+        </div>
+        <div class="carousel-item">
+            <img src="images/img5.jpeg" class="d-block  w-100" alt="">
+        </div>
+        <div class="carousel-item">
+            <img src="images/img9.jpeg" class="d-block w-100" alt="">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 
+ 
+@code {
+    private Carousel carousel;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        
+        carousel = await Http.GetFromJsonAsync<Carousel>("data/home-carousel.json");
+        // todo: modifier le DOM avec JSInterop
+    }
+  }
 <SurveyPrompt Title="How is Blazor working for you?" />
