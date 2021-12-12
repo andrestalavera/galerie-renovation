@@ -6,5 +6,9 @@ $primary: #0F0704;
 $secondary: #7D6551;
 $gold: #FFD700;
 
+html, body, #app {
+    min-height: 100vh;
+}
+
 @import "../lib/bootstrap/scss/bootstrap";
 // Then add additional custom code here
