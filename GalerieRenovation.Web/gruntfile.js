@@ -1,26 +1,44 @@
-﻿module.exports = function (grunt) {
+/// <binding BeforeBuild='clean, sass, cssmin' Clean='clean' />
+module.exports = function (grunt) {
     grunt.initConfig({
         // a task to know which files are edited 
         watch: ["wwwroot/scss/*", "wwwroot/ts/*"],
 
-        // delete old generated files
+        // delete generated files
         clean: ["wwwroot/css/*", "wwwroot/js/*"],
 
-        // compile cass to css
+        // compile sass to css with map
         sass: {
             dist: {
                 files: {
                     'wwwroot/css/galerie-renovation.css': 'wwwroot/scss/galerie-renovation.scss'
-                }
+                },
+                sourcemap: 'auto'
             }
         },
 
+        // minify javascript files
         uglify: {
             options: {
                 beautify: true
             },
-            files: {
-                'www/css/galerie-renovation.min.css': ['www/css/galerie-renovation.css']
+            gr: {
+                files: {
+                    //'wwwroot/js/hello.min.js': ['wwwroot/js/hello.js']
+                }
+            }
+        },
+
+        // minify css files
+        cssmin: {
+            target: {
+                files: [{
+                    expand: true,
+                    cwd: 'wwwroot/css',
+                    src: ['*.css', '!*.min.css'],
+                    dest: 'wwwroot/css',
+                    ext: '.min.css'
+                }]
             }
         }
     });
@@ -29,4 +47,5 @@
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks("grunt-contrib-sass");
     grunt.loadNpmTasks("grunt-contrib-uglify");
+    grunt.loadNpmTasks("grunt-contrib-cssmin");
 };
