@@ -1,36 +1,34 @@
+{
+  "uniqueId": "home",
+  "items": [
+    {
+      "imageUrl": "img3.jpeg",
+      "description": "t1",
+      "active": false
+    },
 
-  {
-    "uniqueId": "home",
-    "Items": [
-      {
-        "ImageUrl": "img3.jpeg",
-        "Description": "t1",
-        "Active": false
-      },
+    {
+      "imageUrl": "img4.jpeg",
+      "description": "test1",
+      "active": false
+    },
 
-      {
-        "ImageUrl": "img4.jpeg",
-        "Description": "test1",
-        "Active": false
-      },
+    {
+      "imageUrl": "img5.jpeg",
+      "description": "test2",
+      "active": false
+    },
 
-      {
-        "ImageUrl": "img5.jpeg",
-        "Description": "test2",
-        "Active": false
-      },
+    {
+      "imageUrl": "img6.jpeg",
+      "description": "test3",
+      "active": true
+    },
 
-      {
-        "ImageUrl": "img6.jpeg",
-        "Description": "test3",
-        "Active": true
-      },
-
-      {
-        "ImageUrl": "img8.jpeg",
-        "Description": "test4",
-        "Active": false
-      }
-  
-    ]
-  }
+    {
+      "imageUrl": "img8.jpeg",
+      "description": "test4",
+      "active": false
+    }
+  ]
+}
