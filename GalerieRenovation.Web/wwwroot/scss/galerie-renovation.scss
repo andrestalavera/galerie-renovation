@@ -39,5 +39,30 @@ html, body, #app {
     }
 }
 
+.nav-link {
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    opacity: 9;
+    transition: all ease-in-out 1s;
+
+    &-contact {
+        background-color: transparent !important;
+        color: $gold !important;
+        border: 1px solid $gold !important;
+
+        &:hover, &:focus, &.active {
+            background-color: $gold !important;
+            opacity: 1;
+            color: $primary !important;
+            border: 1px solid transparent !important;
+        }
+    }
+
+    &:hover, &:focus, &.active {
+        opacity: 1;
+        color: $gold !important;
+    }
+}
+
 @import "../lib/bootstrap/scss/bootstrap";
 // Then add additional custom code here
