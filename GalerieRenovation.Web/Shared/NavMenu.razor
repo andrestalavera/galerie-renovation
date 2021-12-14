@@ -1,39 +1,38 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">GalerieRenovation.Web</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+﻿<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <div class="row w-100">
+            <div class="col">
+                <a class="navbar-brand mx-auto" href="#">
+                    <div class="img-container text-center">
+                        <img height="60" alt="Logo Galerie Rénovation" src="images/logo-galerie-renovation.svg" />
+                    </div>
+                </a>
+            </div>
+            <div class="w-100 d-none d-sm-block"></div>
+            <div class="col">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#galerie-renovation-navbar" aria-controls="galerie-renovation-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-center" id="galerie-renovation-navbar">
+                    <ul class="navbar-nav mb-2 mb-lg-0 ">
+                        <li class="nav-item">
+                            <NavLink class="nav-link" href="#offers">Offres</NavLink>
+                        </li>
+
+                        <li class="nav-item">
+                            <NavLink class="nav-link" href="#realizations">Réalisations</NavLink>
+                        </li>
+
+                        <li class="nav-item">
+                            <NavLink class="nav-link" href="#products">Produits</NavLink>
+                        </li>
+                        <li class="nav-item">
+                            <NavLink class="nav-link nav-link-contact rounded" href="#contact">Contact</NavLink>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </div>
-    </nav>
-</div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
+</nav>
