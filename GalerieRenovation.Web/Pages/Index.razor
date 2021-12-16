@@ -8,40 +8,42 @@
 }
 else
 {
-    <div id="@carousel.UniqueId" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            @{
-                int index = -1;
-                foreach (CarouselItem carouselItem in carousel.Items)
-                {
-                    index++;
-                    string isActiveClass = string.Empty;
-                    if (carouselItem.Active)
+    <section id="home-carousel-section">
+        <div id="@carousel.UniqueId" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                @{
+                    int index = -1;
+                    foreach (CarouselItem carouselItem in carousel.Items)
                     {
-                        isActiveClass = "active";
-                    }
+                        index++;
+                        string isActiveClass = string.Empty;
+                        if (carouselItem.Active)
+                        {
+                            isActiveClass = "active";
+                        }
 
-                    <button type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide-to="@index" aria-label="Slide @index" class="@isActiveClass" aria-current="@carouselItem.Active"></button>
+                        <button type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide-to="@index" aria-label="Slide @index" class="@isActiveClass" aria-current="@carouselItem.Active"></button>
+                    }
                 }
-            }
+            </div>
+            <div class="carousel-inner" style="max-height: 850px;min-height: 276px">
+                @foreach (var item in carousel.Items)
+                {
+                    <div class="carousel-item @(item.Active ? "active" : string.Empty)">
+                        <img src="Images/@item.ImageUrl" class="d-block  w-100" alt="">
+                    </div>
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <div class="carousel-inner" style="max-height: 850px;min-height: 276px">
-            @foreach (var item in carousel.Items)
-            {
-                <div class="carousel-item @(item.Active ? "active" : string.Empty)">
-                    <img src="Images/@item.ImageUrl" class="d-block  w-100" alt="">
-                </div>
-            }
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
+    </section>
 }
 
 @code {
