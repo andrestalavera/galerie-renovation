@@ -12,26 +12,52 @@ else
         <div id="@carousel.UniqueId" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 @{
-                    int index = -1;
+                    int i = -1;
                     foreach (CarouselItem carouselItem in carousel.Items)
                     {
-                        index++;
-                        string isActiveClass = string.Empty;
-                        if (carouselItem.Active)
+                        i++;
+                        string isActiveClassName = string.Empty;
+                        bool isActiveClass = false;
+                        if (i == 0)
                         {
-                            isActiveClass = "active";
+                            isActiveClassName = "active";
+                            isActiveClass = true;
                         }
 
-                        <button type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide-to="@index" aria-label="Slide @index" class="@isActiveClass" aria-current="@carouselItem.Active"></button>
+                        <button type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide-to="@i" aria-label="Slide @i" class="@isActiveClassName" aria-current="@isActiveClass"></button>
                     }
                 }
             </div>
-            <div class="carousel-inner" style="max-height: 850px;min-height: 276px">
-                @foreach (var item in carousel.Items)
-                {
-                    <div class="carousel-item @(item.Active ? "active" : string.Empty)">
-                        <img src="Images/@item.ImageUrl" class="d-block  w-100" alt="">
-                    </div>
+            <div class="carousel-inner">
+                @{
+                    int j = -1;
+                    foreach (var item in carousel.Items)
+                    {
+                        j++;
+                        string isActiveClassName = string.Empty;
+                        if (j == 0)
+                        {
+                            isActiveClassName = "active";
+                        }
+                        <div class="carousel-item @isActiveClassName">
+                            <img src="Images/@item.ImageUrl" class="d-block w-100" alt="">
+                            <div class="carousel-caption d-none d-md-block">
+                                @if (!string.IsNullOrWhiteSpace(item.Title))
+                                {
+                                    <h5 class="text-@item.TextColor">@item.Title</h5>
+                                }
+                                @if (!string.IsNullOrWhiteSpace(item.Description))
+                                {
+                                    <p class="text-@item.TextColor">@item.Description</p>
+                                }
+                                @if (!string.IsNullOrWhiteSpace(item.Route))
+                                {
+                                    <a class="btn btn-@item.BackgroundColor" href="@item.Route">En savoir plus</a>
+                                }
+
+                            </div>
+                        </div>
+                    }
                 }
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide="prev">
@@ -46,6 +72,16 @@ else
     </section>
 }
 
+<section>
+    <center class="mt-3">
+        <h1>Réinventez votre intérieur</h1>
+    </center>
+</section>
+
+<section style="height:2000px;">
+    height:2000px;
+</section>
+
 @code {
     private Carousel? carousel;
 
@@ -53,4 +89,4 @@ else
     {
         carousel = await Http.GetFromJsonAsync<Carousel>("data/home-carousel.json");
     }
-  }
+}
