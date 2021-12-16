@@ -3,32 +3,31 @@
   "items": [
     {
       "imageUrl": "img3.jpeg",
-      "description": "t1",
-      "active": false
+      "title": "Décoration d'intérieur",
+      "route":"/",
+      "backgroundColor":"dark",
+      "textColor":"danger"
     },
 
     {
       "imageUrl": "img4.jpeg",
-      "description": "test1",
-      "active": false
+      "title":"Décoration d'intérieur",
+      "description": "test1"
     },
 
     {
       "imageUrl": "img5.jpeg",
-      "description": "test2",
-      "active": false
+      "title": "",
+      "description": "test2"
     },
 
     {
-      "imageUrl": "img6.jpeg",
-      "description": "test3",
-      "active": true
+      "imageUrl": "img6.jpeg"
     },
 
     {
       "imageUrl": "img8.jpeg",
-      "description": "test4",
-      "active": false
+      "description": "test4"
     }
   ]
 }

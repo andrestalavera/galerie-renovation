@@ -7,5 +7,5 @@ public record Service(string Seo,
     IEnumerable<string> Descriptions,
     IEnumerable<string> ShortDescriptions);
 public record Carousel(string UniqueId, IEnumerable<CarouselItem> Items);
-public record CarouselItem(string Description, string ImageUrl, bool Active);
+public record CarouselItem(string? Title, string ImageUrl, string? Description, string? Route, string BackgroundColor = "primary", string TextColor = "light");
 public record Informations(string Url);
