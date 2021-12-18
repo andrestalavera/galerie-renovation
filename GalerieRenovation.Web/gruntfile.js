@@ -5,7 +5,7 @@ module.exports = function (grunt) {
         watch: ["wwwroot/scss/*", "wwwroot/ts/*"],
 
         // delete generated files
-        clean: ["wwwroot/css/*", "pages/*.css", "shared/*.css", "wwwroot/js/*.js", "!wwwroot/js/*.min.js"],
+        clean: ["wwwroot/css/*", "pages/*.css", "shared/*.css", "wwwroot/js/*.min.js", "!wwwroot/js/*.js"],
 
         // compile sass to css with map
         sass: {
