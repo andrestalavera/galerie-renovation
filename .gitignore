@@ -41,6 +41,10 @@ GalerieRenovation.Web/wwwroot/css/*.css
 GalerieRenovation.Web/wwwroot/css/*.css.map
 GalerieRenovation.Web/wwwroot/css/*.min.css
 GalerieRenovation.Web/wwwroot/js/*.min.js
+GalerieRenovation.Web/Shared/*.css
+GalerieRenovation.Web/Shared/*.map
+GalerieRenovation.Web/Pages/*.css
+GalerieRenovation.Web/Pages/*.map
 
 # Visual Studio 2017 auto generated files
 Generated\ Files/
