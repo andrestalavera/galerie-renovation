@@ -6,8 +6,14 @@ $primary: #0F0704;
 $secondary: #7D6551;
 $gold: #FFD700;
 
+@font-face {
+    font-family: Convection;
+    src: ("../fonts/Conv.ttf");
+}
+
 html, body, #app {
     min-height: 100vh;
+    font-family: Convection;
 }
 
 #blazor-error-ui {
@@ -75,6 +81,7 @@ html, body, #app {
         transition: height ease .5s;
     }
 }
+
 #main {
     min-height: 80vh;
     margin-top: 75px;
