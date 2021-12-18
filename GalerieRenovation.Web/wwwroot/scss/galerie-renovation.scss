@@ -66,3 +66,22 @@ html, body, #app {
 
 @import "../lib/bootstrap/scss/bootstrap";
 // Then add additional custom code here
+#image-brand {
+    height: 75px;
+    transition: height ease .5s;
+
+    &.expanded {
+        height: 100px;
+        transition: height ease .5s;
+    }
+}
+#main {
+    min-height: 80vh;
+    margin-top: 75px;
+    transition: margin ease .5s;
+
+    &.expanded {
+        margin-top: 100px;
+        transition: margin ease .5s;
+    }
+}
