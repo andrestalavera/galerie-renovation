@@ -1,11 +1,16 @@
-﻿// When the user scrolls down 50px from the top of the document, resize the header's font size
-window.onscroll = function () { scrollFunction() };
-
+﻿window.onscroll = function () { scrollFunction() };
 function scrollFunction() {
-    let headerBrand = document.getElementById("header-brand");
+    let imageBrand = document.getElementById("image-brand");
+    let main = document.getElementById("main");
+    let expandedClassName = "expanded";
+    console.log(imageBrand, main, document.documentElement.scrollTop);
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-        headerBrand.classList.replace("col-4", "col-3");
+        console.log("> 50");
+        imageBrand.classList.remove(expandedClassName);
+        main.classList.remove(expandedClassName);
     } else {
-        headerBrand.classList.replace("col-3", "col-4");
+        console.log("< 50");
+        imageBrand.classList.add(expandedClassName);
+        main.classList.add(expandedClassName);
     }
 }
