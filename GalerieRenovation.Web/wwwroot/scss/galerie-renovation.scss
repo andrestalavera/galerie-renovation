@@ -2,12 +2,20 @@
 // Option A: Include all of Bootstrap
 
 // Include any default variable overrides here (though functions won't be available)
-$primary: #0F0704;
-$secondary: #7D6551;
+$dark: #0F0704;
+$light: #7D6551;
+$primary: $dark;
+$secondary: $light;
 $gold: #FFD700;
+
+@font-face {
+    font-family: Convection;
+    src: ("../fonts/Conv.ttf");
+}
 
 html, body, #app {
     min-height: 100vh;
+    font-family: Convection;
 }
 
 #blazor-error-ui {
@@ -39,24 +47,11 @@ html, body, #app {
     }
 }
 
-.nav-link {
+.uppercase-spacing-opacity {
     text-transform: uppercase;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.2em;
     opacity: 9;
     transition: all ease-in-out 1s;
-
-    &-contact {
-        background-color: transparent !important;
-        color: $gold !important;
-        border: 1px solid $gold !important;
-
-        &:hover, &:focus, &.active {
-            background-color: $gold !important;
-            opacity: 1;
-            color: $primary !important;
-            border: 1px solid transparent !important;
-        }
-    }
 
     &:hover, &:focus, &.active {
         opacity: 1;
@@ -64,8 +59,27 @@ html, body, #app {
     }
 }
 
+.nav-link {
+    @extend .uppercase-spacing-opacity;
+
+    &-contact {
+        @extend .btn;
+        @extend .btn-outline-warning;
+        @extend .nav-link;
+        color: $gold !important;
+
+        &:hover, &:focus {
+            color: $primary !important;
+        }
+    }
+}
+
+.btn {
+    @extend .uppercase-spacing-opacity;
+}
+
 @import "../lib/bootstrap/scss/bootstrap";
-// Then add additional custom code here
+
 #image-brand {
     height: 75px;
     transition: height ease .5s;
@@ -75,6 +89,7 @@ html, body, #app {
         transition: height ease .5s;
     }
 }
+
 #main {
     min-height: 80vh;
     margin-top: 75px;
@@ -83,5 +98,20 @@ html, body, #app {
     &.expanded {
         margin-top: 100px;
         transition: margin ease .5s;
+    }
+}
+
+section {
+    #offers {
+        background-image: url('../images/img5.jpeg');
+        background-size: cover;
+    }
+}
+
+@for $index from 1 through 10 {
+    @each $name, $value in $theme-colors {
+        .bg-#{$name}-transparent-#{$index}0 {
+            background-color: transparentize($value, calc($index/10));
+        }
     }
 }
