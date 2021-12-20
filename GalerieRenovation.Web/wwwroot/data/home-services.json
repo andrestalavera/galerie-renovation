@@ -1,16 +1,14 @@
 ﻿[
   {
     "title": "Architecture d'intérieur",
-    "subtitle": "Première étape - RDV Conseils - Diagnostic d'intérieur 70 € / heure,",
+    "subtitle": "Première étape - RDV Conseils - Diagnostic d'intérieur 70 € / heure",
     "description1": "L'architecte d'intérieur travail avec vous sur votre projet et vous apporte immédiatement des solutions d'aménagements/de rénovations.",
     "description2": "",
     "descriptions": [
-      "",
-      ""
     ],
     "shortDescriptions": [
-      "L'architecte d'intérieur travail avec vous sur votre projet et vous apporte immédiatement des solutions d'aménagements/de rénovations.",
-      "Etude de votre projet d'architecture",
+      "Conseils diagnostic d'architecte d'intérieur",
+      "Etude de votre projet d'architecture d'intérieur",
       "Suivi et coordination des travaux"
     ]
   },
@@ -20,13 +18,12 @@
     "description1": "",
     "description2": "",
     "descriptions": [
-      "RDV Conseils / Diagnostic décoration",
-      "Etude de votre projet de décoration d'intérieur",
-      "Suivi des artisans, des commandes, shopping et aménagement final"
     ],
     "shortDescriptions": [
-      "",
-      ""
+      "Conseils diagnostic de décoration d'intérieur",
+      "Etude de votre projet de décoration d'intérieur",
+      "Suivi et coordination des travaux",
+      "Suivi des artisans, commandes, shopping et aménagement final"
     ]
   },
   {
@@ -35,13 +32,11 @@
     "description1": "",
     "description2": "",
     "descriptions": [
-      "RDV Conseils c/ Relooking d'intérieur",
-      "Coach Shopping",
-      "Mise en scène finale"
     ],
     "shortDescriptions": [
-      "",
-      ""
+      "Conseils de Relooking d'intérieur",
+      "Coach Shopping",
+      "Mise en scène finale"
     ]
   },
   {
@@ -50,13 +45,11 @@
     "description1": "",
     "description2": "",
     "descriptions": [
-      "RDV Conseils",
-      "Étude de votre projet de rénovation commerciale et tertiaire",
-      "Suivi et coordination des travaux d’aménagement commercial"
     ],
     "shortDescriptions": [
-      "",
-      ""
+      "Conseils",
+      "Étude de votre projet de rénovation commerciale et tertiaire",
+      "Suivi et coordination des travaux d’aménagement commercial"
     ]
   }
 ]

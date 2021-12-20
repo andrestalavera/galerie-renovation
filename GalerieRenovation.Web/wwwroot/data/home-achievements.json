@@ -1,0 +1,34 @@
+﻿[
+  {
+    "title": "Salon de coiffure",
+    "description": "",
+    "location": "Strasbourg",
+    "images": [
+      "ex1.jpg"
+    ]
+  },
+  {
+    "title": "Restaurant",
+    "description": "",
+    "location": "Strasbourg",
+    "images": [
+      "ex2.jpg"
+    ]
+  },
+  {
+    "title": "Salle polyvalente",
+    "description": "",
+    "location": "Reichschoffen",
+    "images": [
+      "ex3.jpg"
+    ]
+  },
+  {
+    "title": "Appartement d'un particulier",
+    "description": "",
+    "location": "Lampertheim",
+    "images": [
+      "ex3t.jpg"
+    ]
+  }
+]
