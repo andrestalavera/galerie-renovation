@@ -50,12 +50,12 @@ html, body, #app {
 .uppercase-spacing-opacity {
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    opacity: 9;
-    transition: all ease-in-out 1s;
+    opacity: .9;
+    transition: all ease-in-out .5s;
 
     &:hover, &:focus, &.active {
         opacity: 1;
-        color: $gold !important;
+        transition: all ease-in-out .5s;
     }
 }
 
@@ -112,6 +112,30 @@ section {
     @each $name, $value in $theme-colors {
         .bg-#{$name}-transparent-#{$index}0 {
             background-color: transparentize($value, calc($index/10));
+        }
+    }
+
+    .transparency-#{$index}0 {
+        opacity: calc($index/10);
+        transition: opacity ease 1s;
+
+        &.disable-on-hover {
+            &:hover, &:focus {
+                opacity: 1;
+                transition: opacity ease 1s;
+            }
+        }
+    }
+
+    .scale-out-#{$index}0 {
+        transform: scale(1, 1);
+        transition: transform ease 1s;
+
+        &.disable-on-hover {
+            &:hover, &:focus {
+                transform: scale(calc(1 + calc($index/100)), calc(1 + (calc($index/100))));
+                transition: transform ease 1s;
+            }
         }
     }
 }
