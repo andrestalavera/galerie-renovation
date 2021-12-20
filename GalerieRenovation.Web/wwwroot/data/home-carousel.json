@@ -2,7 +2,7 @@
   "uniqueId": "home",
   "items": [
     {
-      "imageUrl": "img3.jpeg",
+      "image": "img3.jpeg",
       "title": "Décoration d'intérieur",
       "route":"/",
       "backgroundColor":"dark",
@@ -10,23 +10,23 @@
     },
 
     {
-      "imageUrl": "img4.jpeg",
+      "image": "img4.jpeg",
       "title":"Décoration d'intérieur",
       "description": "test1"
     },
 
     {
-      "imageUrl": "img5.jpeg",
+      "image": "img5.jpeg",
       "title": "",
       "description": "test2"
     },
 
     {
-      "imageUrl": "img6.jpeg"
+      "image": "img6.jpeg"
     },
 
     {
-      "imageUrl": "img8.jpeg",
+      "image": "img8.jpeg",
       "description": "test4"
     }
   ]

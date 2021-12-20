@@ -1,0 +1,61 @@
+﻿@using System.ComponentModel.DataAnnotations
+<PageTitle>Galerie Rénovation - Calculatrice</PageTitle>
+
+<div class="modal fade" id="calculator-modal" tabindex="-1" aria-labelledby="calculator-modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div>
+                @* <DataAnnotationsValidator />
+                    <ValidationSummary />*@
+                <div class="modal-header">
+                    <h5 class="modal-title">Laissez-nous vos coordonnées</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="subscribeToNewsletterCheckbox"/>
+                        <label class="form-check-label" for="subscribeToNewsletterCheckbox">
+                            Forfait A
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="subscribeToNewsletterCheckbox"/>
+                        <label class="form-check-label" for="subscribeToNewsletterCheckbox">
+                            Forfait B
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="subscribeToNewsletterCheckbox"/>
+                        <label class="form-check-label" for="subscribeToNewsletterCheckbox">
+                            Forfait C
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="subscribeToNewsletterCheckbox"/>
+                        <label class="form-check-label" for="subscribeToNewsletterCheckbox">
+                            Forfait D
+                        </label>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phoneNumberInput" class="form-label">Surface : </label>
+                        <input type="number" class="form-control" id="phoneNumberInput" placeholder="10"/>
+                    </div>
+
+                    <p class="small">Estimation basée sur le prix moyen des produits et/ou services, ainsi que sur la surface que vous avez saisie. Les prix peuvent varier lors de la réalisation d'un devis réalisé auprès de nos commerciaux ou apporteurs d'affaires.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Calculer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+}

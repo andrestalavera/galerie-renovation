@@ -1,0 +1,67 @@
+﻿@using System.ComponentModel.DataAnnotations
+<PageTitle>Galerie Rénovation - Contact</PageTitle>
+
+<div class="modal fade" id="contact-modal" tabindex="-1" aria-labelledby="contact-modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <EditForm Model="@contactContext">
+                @* <DataAnnotationsValidator />
+                    <ValidationSummary />*@
+                <div class="modal-header">
+                    <h5 class="modal-title">Laissez-nous vos coordonnées</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label for="nameInput" class="form-label">Nom et prénom :</label>
+                        <InputText type="text" class="form-control" id="nameInput" placeholder="John Doe" @bind-Value="contactContext.Names" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="emailInput" class="form-label">Courriel :</label>
+                        <InputText type="email" class="form-control" id="emailInput" placeholder="name@example.com" @bind-value="contactContext.Email" ValueExpression="@(() => contactContext.Email)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phoneNumberInput" class="form-label">Numéro de téléphone :</label>
+                        <InputText type="text" class="form-control" id="phoneNumberInput" placeholder="06 00 00 00 00" @bind-Value="contactContext.Phone" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="messageInput" class="form-label">Message :</label>
+                        <InputTextArea class="form-control" id="messageInput" @bind-Value="contactContext.Message"
+                                       placeholder="Bonjour, j'aimerais rénovation mon appartement. Pouvez-vous me contacter ? Cordialement." />
+                    </div>
+
+                    <div class="form-check">
+                        <InputCheckbox class="form-check-input" type="checkbox" id="subscribeToNewsletterCheckbox" @bind-Value="contactContext.SubscribeToNewsletter"/>
+                        <label class="form-check-label" for="subscribeToNewsletterCheckbox">
+                            Permettre à la société "Galerie Rénovation" d'émettre régulièrement des courriels d'information.
+                        </label>
+                    </div>
+
+                    <p class="small">En remplissant ce formulaire, vous acceptez qu'on vous contacte avec les informations que vous avez saisies. Conformément à la loi Informatique et libertés, vous pouvez toujours nous contacter pour modifier ou supprimer vos informations personnelles.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    private ContactContext @contactContext = new();
+    private EditContext? editContext;
+
+    protected override void OnInitialized()
+    {
+        editContext = new(@contactContext);
+    }
+
+    private void HandleValidSubmit()
+    {
+    }
+}

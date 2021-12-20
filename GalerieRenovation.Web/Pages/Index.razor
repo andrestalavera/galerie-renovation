@@ -1,6 +1,6 @@
 ﻿@page "/"
 @inject HttpClient Http
-<PageTitle>Accueil</PageTitle>
+<PageTitle>Accueil - Galerie Rénovation</PageTitle>
 
 @if (carousel is null)
 {
@@ -23,6 +23,11 @@ else
                             isActiveClassName = "active";
                             isActiveClass = true;
                         }
+                        else
+                        {
+                            isActiveClassName = string.Empty;
+                            isActiveClass = false;
+                        }
 
                         <button type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide-to="@i" aria-label="Slide @i" class="@isActiveClassName" aria-current="@isActiveClass"></button>
                     }
@@ -39,8 +44,12 @@ else
                         {
                             isActiveClassName = "active";
                         }
+                        else
+                        {
+                            isActiveClassName = string.Empty;
+                        }
                         <div class="carousel-item @isActiveClassName">
-                            <img src="Images/@item.ImageUrl" class="d-block w-100" alt="">
+                            <img src="Images/@item.Image" class="d-block w-100" alt="">
                             <div class="carousel-caption d-none d-md-block">
                                 @if (!string.IsNullOrWhiteSpace(item.Title))
                                 {
@@ -72,21 +81,167 @@ else
     </section>
 }
 
-<section>
-    <center class="mt-3">
-        <h1>Réinventez votre intérieur</h1>
-    </center>
+<section class="my-5">
+    <div class="container">
+        <div class="row my-2">
+            <div class="col">
+                <div class="display-3 text-center">Réinventez votre intérieur</div>
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col-4">
+                <h2>Galerie Rénovation Vous accompagne dans vos projets</h2>
+                <p>Ici un cours texte de présentation qui parle de galerie rénovation, son identité, son but , ce qui fait la différence avec les autres entreprises</p>
+            </div>
+            <div class="col-8">
+                <img class="w-100" src="Images/exx.jpeg">
+            </div>
+        </div>
+    </div>
 </section>
 
-<section style="height:2000px;">
-    height:2000px;
+<section class="my-5" id="offers">
+    <div class="container">
+        <div class="row my-2">
+            <div class="col">
+                <div class="display-3 text-center">Nos forfaits</div>
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col">
+                <div class="card-group">
+                    @if (services is null)
+                    {
+                        <Loading />
+                    }
+                    else
+                    {
+                        int index = -10;
+                        foreach (var service in services)
+                        {
+                            index += 20;
+                            <div class="card shadow-lg bg-light-transparent-@index text-white transparency-90 disable-on-hover">
+                                @if (!string.IsNullOrWhiteSpace(service.Image))
+                                {
+                                    <img src="images/@service.Image" class="card-img-top" alt="">
+                                }
+                                <div class="card-body">
+                                    <h5 class="card-title my-3">@service.Title</h5>
+                                    @if(service.ShortDescriptions.Any())
+                                    {
+                                        <p class="card-text">
+                                            <ul class="list-unstyled">
+                                                @foreach (var description in service.ShortDescriptions)
+                                                {
+                                                    <li class="my-2">@description</li>
+                                                }
+                                            </ul>
+                                        </p>
+                                    }
+
+                                </div>
+                                <NavLink href="offers/#" class="btn align-center btn-light m-3">En savoir plus</NavLink>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col text-center">
+                <NavLink class="btn btn-outline-light" href="#">Réaliser une simulation</NavLink>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="my-5 bg-light text-dark" id="products">
+    <div class="container">
+        <div class="row my-2">
+            <div class="col">
+                <h1 class="display-3 text-center">Nos produits phares</h1>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-4 my-2">
+            @if (products is null)
+            {
+                <Loading />
+            }
+            else
+            {
+                foreach (var product in products)
+                {
+                    <div class="col">
+                        <div class="card h-100 transparency-80 scale-out-10 disable-on-hover text-primary">
+                            @if (product.Images.Any())
+                            {
+                                <img src="images/@product.Images.First()" class="card-img-top" alt="@product.Title">
+                            }
+                            <div class="card-body">
+                                <h5 class="card-title">@product.Title</h5>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="row my-2">
+            <div class="col text-center">
+                <NavLink class="btn btn-outline-light" href="/Products">Découvrir plus de produits</NavLink>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="my-5" id="achievements">
+    <div class="container">
+        <div class="row my-2">
+            <div class="col">
+                <h1 class="display-3 text-center">Nos réalisations</h1>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-4 my-2">
+            @if (achievements is null)
+            {
+                <Loading />
+            }
+            else
+            {
+                @foreach (var achievement in achievements)
+                {
+                    <div class="col transparency-80 scale-out-10 disable-on-hover">
+                        <div class="card h-100">
+                            @if (achievement.Images.Any())
+                            {
+                                <img src="images/@achievement.Images.First()" class="card-img-top" alt="@achievement.Title">
+                            }
+                            <div class="card-body">
+                                <h5 class="card-title">@achievement.Title</h5>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="row my-2">
+            <div class="col text-center">
+                <NavLink class="btn btn-outline-light" href="/Achuevements">Explorer nos réalisations chez vous</NavLink>
+            </div>
+        </div>
+    </div>
 </section>
 
 @code {
+    private IEnumerable<Service>? services;
+    private IEnumerable<Product>? products;
+    private IEnumerable<Achievement>? achievements;
     private Carousel? carousel;
 
     protected override async Task OnInitializedAsync()
     {
         carousel = await Http.GetFromJsonAsync<Carousel>("data/home-carousel.json");
+        services = await Http.GetFromJsonAsync<IEnumerable<Service>>("data/home-services.json");
+        products = await Http.GetFromJsonAsync<IEnumerable<Product>>("data/home-products.json");
+        achievements = await Http.GetFromJsonAsync<IEnumerable<Achievement>>("data/home-achievements.json");
     }
 }
