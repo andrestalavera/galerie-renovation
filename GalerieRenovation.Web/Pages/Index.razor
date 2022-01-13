@@ -125,7 +125,7 @@ else
                                     }
                                     <div class="card-body">
                                         <h5 class="card-title my-3">@service.Title</h5>
-                                        @if (service.ShortDescriptions.Any())
+                                        @if (service.ShortDescriptions is not null)
                                         {
                                             <p class="card-text">
                                                 <ul class="list-unstyled">
@@ -138,7 +138,7 @@ else
                                         }
 
                                     </div>
-                                    <NavLink href="offers/#" class="btn align-center btn-light m-3">En savoir plus</NavLink>
+                                    <NavLink href="offers" class="btn align-center btn-light m-3">En savoir plus...</NavLink>
                                 </div>
                             }
                         }
