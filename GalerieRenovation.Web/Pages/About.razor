@@ -1,12 +1,52 @@
-﻿@page "/about"
+﻿@page "/informations/{page}"
+@using MarkdownSharp;
+@using System.Diagnostics
+@inject ILogger<About> logger;
+@inject HttpClient httpClient;
 
 <PageTitle>&Agrave; propos - Galerie Rénovation</PageTitle>
 <div class="container">
-    <div class="row my-3 text-center">
+    <div class="row my-3">
         <div class="col">
-            <div class="display-3">&Agrave; propos</div>
+            @Content
         </div>
     </div>
     <div class="row my-3"></div>
 </div>
-<UnderConstruction />
+<BusinessDev />
+
+@code {
+    [Parameter]
+    public string Page { get; set; }
+
+    private MarkupString Content { get; set; }
+    private Dictionary<string, string> Pages => new()
+        {
+            ["notre-histoire"] = "about-story-fr",
+            ["mentions-legales"] = "about-legal-fr",
+            ["devenir-apporteur-d-affaires"] = "about-business-dev-fr",
+            ["se-faire-sponsoriser"] = "about-sponsoring"
+        };
+
+    protected override async Task OnParametersSetAsync()
+    {
+        logger.LogInformation($"`Page` value: {Page}");
+        if (string.IsNullOrWhiteSpace(Page))
+        {
+            Page = "about-index-fr";
+        }
+
+        string page = Pages.GetValueOrDefault(Page);
+
+        string filePath = $"data/{page}.md";
+        logger.LogInformation("filePath: {filePath}", filePath);
+
+        string text = await httpClient.GetStringAsync(filePath);
+        
+        // TODO: Use Heading component
+        logger.LogInformation("text: {text}", text);
+
+        Markdown markdown = new();
+        Content = new(markdown.Transform(text));
+    }
+}

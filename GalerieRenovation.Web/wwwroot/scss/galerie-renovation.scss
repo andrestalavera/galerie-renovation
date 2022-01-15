@@ -16,6 +16,7 @@ $gold: #FFD700;
 html, body, #app {
     min-height: 100vh;
     font-family: Convection;
+    background-color: $dark;
 }
 
 #blazor-error-ui {
@@ -85,23 +86,23 @@ html, body, #app {
 @import "../lib/bootstrap/scss/bootstrap";
 
 #image-brand {
-    height: 75px !important;
-    transition: height ease .5s !important;
+    height: 60px !important;
+    transition: height ease .75s;
 
     &.expanded {
-        height: 100px !important;
-        transition: height ease .5s !important;
+        height: 90px !important;
+        transition: height ease .75s;
     }
 }
 
 #main {
     @extend .min-vh-75;
-    margin-top: 171px !important;
-    transition: margin ease .5s !important;
+    margin-top: 155px !important;
+    transition: margin ease .75s;
 
     &.expanded {
-        margin-top: 196px !important;
-        transition: margin ease .5s !important;
+        margin-top: 185px !important;
+        transition: margin ease .75s;
     }
 }
 

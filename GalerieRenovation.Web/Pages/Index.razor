@@ -8,9 +8,9 @@
 }
 else
 {
-    <section class="my-5" id="home-carousel-section">
+    <section class="pb-3" id="home-carousel-section">
         <div class="container">
-            <div class="row my-3">
+            <div class="row mb-4">
                 <div id="@carousel.UniqueId" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         @{
@@ -84,14 +84,10 @@ else
         </div>
     </section>
 
-    <section class="my-5" id="intro">
+    <section class="pt-3 pb-5" id="intro">
         <div class="container">
-            <div class="row my-3">
-                <div class="col">
-                    <div class="display-3 text-center">Réinventez votre intérieur</div>
-                </div>
-            </div>
-            <div class="row my-3">
+            <Heading Title="Réinventez votre intérieur"/>
+            <div class="row mb-4">
                 <div class="col-12 col-md-5">
                     <h2>Galerie Rénovation Vous accompagne dans vos projets</h2>
                     <p>Ici un cours texte de présentation qui parle de galerie rénovation, son identité, son but , ce qui fait la différence avec les autres entreprises</p>
@@ -103,14 +99,10 @@ else
         </div>
     </section>
 
-    <section class="my-5" id="offers">
+    <section class="pt-3 pb-5" id="offers">
         <div class="container">
-            <div class="row my-3">
-                <div class="col">
-                    <div class="display-3 text-center">Nos forfaits</div>
-                </div>
-            </div>
-            <div class="row my-3">
+            <Heading Title="Nos formules"/>
+            <div class="row mb-4">
                 <div class="col">
                     <div class="card-group">
                         @{
@@ -145,7 +137,7 @@ else
                     </div>
                 </div>
             </div>
-            <div class="row my-2">
+            <div class="row mb-4">
                 <div class="col">
                     <p class="lead">
                         Une petite phrase pour conclure la partie services.
@@ -159,14 +151,10 @@ else
         </div>
     </section>
 
-    <section class="my-5 bg-light text-dark" id="products">
+    <section class="pt-3 pb-5 bg-light text-dark" id="products">
         <div class="container">
-            <div class="row my-3">
-                <div class="col">
-                    <h1 class="display-3 text-center">Nos produits phares</h1>
-                </div>
-            </div>
-            <div class="row row-cols-2 row-cols-md-4 my-0 g-3 gy-md-0">
+            <Heading Title="Produits phares"/>
+            <div class="row mb-4 row-cols-2 row-cols-md-4 my-0 g-3 gy-md-0">
                 @foreach (var product in products)
                 {
                     <div class="col">
@@ -182,12 +170,12 @@ else
                     </div>
                 }
             </div>
-            <div class="row my-3">
+            <div class="row mb-4">
                 <div class="col text-center">
                     <NavLink class="btn btn-outline-dark" href="/Products">Découvrir plus de produits</NavLink>
                 </div>
             </div>
-            <div class="row my-3">
+            <div class="row mb-4">
                 <div class="col">
                     <p class="lead">
                         Une petite phrase pour le SEO et identifier le type de produits, la gamme de produits, etc.
@@ -199,14 +187,10 @@ else
         </div>
     </section>
 
-    <section class="my-5" id="achievements">
+    <section class="pt-3 pb-5" id="achievements">
         <div class="container">
-            <div class="row my-3">
-                <div class="col">
-                    <h1 class="display-3 text-center">Nos réalisations</h1>
-                </div>
-            </div>
-            <div class="row row-cols-2 row-cols-md-4 my-0">
+            <Heading Title="Nos réalisations"/>
+            <div class="row mb-4 row-cols-2 row-cols-md-4 my-0">
                 @foreach (var achievement in achievements)
                 {
                     <div class="col transparency-80 scale-out-10 disable-on-hover g-3 gy-md-0">
@@ -223,12 +207,12 @@ else
                 }
 
             </div>
-            <div class="row my-3">
+            <div class="row mb-4">
                 <div class="col text-center">
                     <NavLink class="btn btn-outline-light" href="/achievements">Explorer nos réalisations chez vous</NavLink>
                 </div>
             </div>
-            <div class="row my-3">
+            <div class="row mb-4">
                 <div class="col">
                     <p class="lead">
                         Faire comprendre à nos clients que les précédents ont été satisfaits.
