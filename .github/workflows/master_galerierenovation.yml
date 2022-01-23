@@ -36,6 +36,7 @@ jobs:
 
       - name: Build
         run: |
+          winget install Ruby --accept-source-agreements --accept-package-agreements -h
           cd GalerieRenovation.Web
           npm ls
           npm install jshint
