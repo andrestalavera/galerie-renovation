@@ -36,13 +36,14 @@ jobs:
 
       - name: Build
         run: |
-          npm install
-          grunt
-          grunt-contrib-watch
-          grunt-contrib-clean
-          grunt-contrib-sass
-          grunt-contrib-uglify
-          grunt-contrib-cssmin
+          npm install jshint
+          npm install grunt
+          npm install grunt-cli
+          npm install grunt-contrib-watch
+          npm install grunt-contrib-clean
+          npm install grunt-contrib-sass
+          npm install grunt-contrib-uglify
+          npm install grunt-contrib-cssmin
 
 
       - name: dotnet publish
