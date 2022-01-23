@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -22,24 +22,20 @@ jobs:
           dotnet-version: '6.0.x'
           include-prerelease: true
 
-      - run: ls
-
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
-      - run: echo ${{env.DOTNET_ROOT}}
-
       - name: dotnet publish
-        run: dotnet publish GalerieRenovation.Web -c Release -o ${{env.DOTNET_ROOT}}/
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/
+          path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
     environment:
       name: 'Production'
@@ -57,5 +53,5 @@ jobs:
         with:
           app-name: 'galerierenovation'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_48C7A07A080F4ACD9C61ADBE48AA4A3B }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A0F0E8A02EE24F66AEEA18F409F8749C }}
           package: .
