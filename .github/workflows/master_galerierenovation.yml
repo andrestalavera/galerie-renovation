@@ -26,17 +26,22 @@ jobs:
           dotnet-version: '6.0.x'
           include-prerelease: true
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          cache-version: 1
+
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+
       - name: Build
         run: |
-          winget install Ruby --accept-source-agreements --accept-package-agreements -h
           cd GalerieRenovation.Web
           npm ls
           npm install jshint
