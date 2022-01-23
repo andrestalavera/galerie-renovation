@@ -36,6 +36,7 @@ jobs:
         with:
           bundler-cache: true
           cache-version: 1
+          ruby-version: 3.0
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
