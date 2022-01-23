@@ -36,6 +36,8 @@ jobs:
 
       - name: Build
         run: |
+          cd GalerieRenovation.Web
+          npm ls
           npm install jshint
           npm install grunt
           npm install grunt-cli
@@ -44,6 +46,7 @@ jobs:
           npm install grunt-contrib-sass
           npm install grunt-contrib-uglify
           npm install grunt-contrib-cssmin
+          cd ..
 
 
       - name: dotnet publish
