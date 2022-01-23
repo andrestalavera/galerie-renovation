@@ -12,6 +12,10 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -24,6 +28,22 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Build
+        run: |
+          npm install
+          grunt
+          grunt-contrib-watch
+          grunt-contrib-clean
+          grunt-contrib-sass
+          grunt-contrib-uglify
+          grunt-contrib-cssmin
+
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
