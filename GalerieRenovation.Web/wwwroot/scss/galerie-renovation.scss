@@ -124,7 +124,7 @@ section {
 @for $index from 1 through 10 {
     @each $name, $value in $theme-colors {
         .bg-#{$name}-transparent-#{$index}0 {
-            background-color: transparentize($value, calc($index/10)) !important;
+            background-color: transparentize($value, calc($index / 10)) !important;
         }
     }
 
