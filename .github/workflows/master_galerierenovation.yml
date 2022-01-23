@@ -22,14 +22,15 @@ jobs:
           dotnet-version: '6.0.x'
           include-prerelease: true
 
-      - name: 
-        run: ls
+      - run: ls
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
+      - run: echo ${{env.DOTNET_ROOT}}
+
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/
+        run: dotnet publish GalerieRenovation.Web -c Release -o ${{env.DOTNET_ROOT}}/
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
