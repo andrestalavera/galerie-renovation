@@ -46,6 +46,10 @@ jobs:
           npm install grunt-contrib-sass
           npm install grunt-contrib-uglify
           npm install grunt-contrib-cssmin
+          npm ls
+          grunt sass
+          grunt cssmin
+          grunt uglify
           cd ..
 
 
