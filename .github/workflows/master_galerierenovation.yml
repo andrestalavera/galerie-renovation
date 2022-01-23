@@ -45,6 +45,8 @@ jobs:
         run: |
           cd GalerieRenovation.Web
           npm ls
+          choco install dart-sdk --yes
+          dart compile-sass.dart
           npm install jshint
           npm install grunt
           npm install grunt-cli
@@ -54,7 +56,6 @@ jobs:
           npm install grunt-contrib-uglify
           npm install grunt-contrib-cssmin
           npm ls
-          gem install sass
           grunt sass
           grunt cssmin
           grunt uglify
