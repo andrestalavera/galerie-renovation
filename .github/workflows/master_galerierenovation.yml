@@ -51,15 +51,11 @@ jobs:
           npm install jshint
           npm install grunt
           npm install grunt-cli
-          npx --package node-sass@latest node-sass --version
-          npx --package node-sass@latest node-sass --output-style expanded --source-map true --source-map-contents true wwwroot/scss/ -o wwwroot/css/
+          npm install sass
           ls -Al wwwroot/css
-          npm install grunt
-          npm install grunt-cli
           npm install grunt-contrib-uglify
           npm install grunt-contrib-cssmin
           ls -Al
-          grunt sass
           grunt cssmin
           grunt uglify
           cd ..
