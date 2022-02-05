@@ -7,13 +7,36 @@
     <title>Galerie Rénovation</title>
     <base href="/" />
     <link href="css/galerie-renovation.min.css" rel="stylesheet" />
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    <!-- can install -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- icons -->
+    <link rel="apple-touch-icon" href="images/icons/icon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/icons/icon-152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="images/icons/icon-167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icons/icon-180.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="images/icons/icon-192.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="images/icons/icon-256.png">
+    <link rel="apple-touch-icon" sizes="384x384" href="images/icons/icon-384.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="images/icons/icon-512.png">
+    <!-- splash -->
+    <link rel="apple-touch-startup-image" href="images/icons/launch.png">
+    <!-- status bar -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0F0704">
+    <meta name="theme-color" content="#0F0704">
+    <!-- App Name -->
+    <meta name="apple-mobile-web-app-title" content="Galerie Rénovation">
+    <meta name="application-name" content="Galerie Rénovation" />
 </head>
 
 <body>
     <div id="app" class="bg-primary text-light">
-        <div id="loading" class="position-absolute top-50 start-50">
-            <div class="spinner-border text-light" role="status">
-                <span class="visually-hidden">Chargement...</span>
+        <div id="loading" class="position-absolute top-50 start-50 translate-middle">
+            <div class="text-center text-primary m-2">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">...</span>
+                </div>
+                <div class="lead">Chargement en cours...</div>
             </div>
         </div>
     </div>

@@ -35,19 +35,25 @@ public record Product(string Title,
     string? Unit,
     IEnumerable<string>? Images);
 
-public class ContactContext
+
+public abstract class ContactContextBase
 {
-    //[Required, MinLength(2)]
     public string? Names { get; set; }
 
-    //[Required, EmailAddress, MinLength(4)]
     public string? Email { get; set; }
 
-    //[Required, Phone, MinLength(9)]
     public string? Phone { get; set; }
 
-    //[Required, MinLength(15)]
+    public bool SubscribeToNewsletter { get; set; }
+}
+
+public class ContactContext : ContactContextBase
+{
     public string? Message { get; set; }
 
-    public bool SubscribeToNewsletter { get; set; }
+}
+
+public class BusinessDevContext : ContactContextBase
+{
+    public string Address { get; set; }
 }

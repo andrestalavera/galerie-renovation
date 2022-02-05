@@ -10,12 +10,13 @@ $gold: #FFD700;
 
 @font-face {
     font-family: Convection;
-    src: ("../fonts/Conv.ttf");
+    src: url("../fonts/Conv.ttf") format('truetype'), url("../fonts/Conv.woff") format('woff');
 }
 
 html, body, #app {
     min-height: 100vh;
     font-family: Convection;
+    background-color: $dark;
 }
 
 #blazor-error-ui {
@@ -48,14 +49,14 @@ html, body, #app {
 }
 
 .uppercase-spacing-opacity {
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    opacity: .9;
-    transition: all ease-in-out .5s;
+    text-transform: uppercase !important;
+    letter-spacing: 0.2em !important;
+    opacity: .9 !important;
+    transition: all ease-in-out .5s !important;
 
     &:hover, &:focus, &.active {
-        opacity: 1;
-        transition: all ease-in-out .5s;
+        opacity: 1 !important;
+        transition: all ease-in-out .5s !important;
     }
 }
 
@@ -78,26 +79,30 @@ html, body, #app {
     @extend .uppercase-spacing-opacity;
 }
 
+.min-vh-75 {
+    min-height: 75vh;
+}
+
 @import "../lib/bootstrap/scss/bootstrap";
 
 #image-brand {
-    height: 75px;
-    transition: height ease .5s;
+    height: 60px !important;
+    transition: height ease .75s;
 
     &.expanded {
-        height: 100px;
-        transition: height ease .5s;
+        height: 90px !important;
+        transition: height ease .75s;
     }
 }
 
 #main {
-    min-height: 80vh;
-    margin-top: 75px;
-    transition: margin ease .5s;
+    @extend .min-vh-75;
+    margin-top: 155px !important;
+    transition: margin ease .75s;
 
     &.expanded {
-        margin-top: 100px;
-        transition: margin ease .5s;
+        margin-top: 185px !important;
+        transition: margin ease .75s;
     }
 }
 
@@ -108,21 +113,29 @@ section {
     }
 }
 
+@each $bp-name, $bp-value in $grid-breakpoints {
+    @include media-breakpoint-down($bp-name) {
+        .clearfix-#{$bp-name} {
+            @include clearfix;
+        }
+    }
+}
+
 @for $index from 1 through 10 {
     @each $name, $value in $theme-colors {
         .bg-#{$name}-transparent-#{$index}0 {
-            background-color: transparentize($value, calc($index/10));
+            background-color: transparentize($value, calc($index / 10)) !important;
         }
     }
 
     .transparency-#{$index}0 {
-        opacity: calc($index/10);
-        transition: opacity ease 1s;
+        opacity: calc($index/10) !important;
+        transition: opacity ease 1s !important;
 
         &.disable-on-hover {
             &:hover, &:focus {
-                opacity: 1;
-                transition: opacity ease 1s;
+                opacity: 1 !important;
+                transition: opacity ease 1s !important;
             }
         }
     }

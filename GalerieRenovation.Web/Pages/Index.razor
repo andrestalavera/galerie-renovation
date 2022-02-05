@@ -2,184 +2,164 @@
 @inject HttpClient Http
 <PageTitle>Accueil - Galerie Rénovation</PageTitle>
 
-@if (carousel is null)
+@if (carousel is null || services is null || products is null || achievements is null)
 {
     <Loading />
 }
 else
 {
-    <section id="home-carousel-section">
-        <div id="@carousel.UniqueId" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                @{
-                    int i = -1;
-                    foreach (CarouselItem carouselItem in carousel.Items)
-                    {
-                        i++;
-                        string isActiveClassName = string.Empty;
-                        bool isActiveClass = false;
-                        if (i == 0)
-                        {
-                            isActiveClassName = "active";
-                            isActiveClass = true;
-                        }
-                        else
-                        {
-                            isActiveClassName = string.Empty;
-                            isActiveClass = false;
-                        }
-
-                        <button type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide-to="@i" aria-label="Slide @i" class="@isActiveClassName" aria-current="@isActiveClass"></button>
-                    }
-                }
-            </div>
-            <div class="carousel-inner">
-                @{
-                    int j = -1;
-                    foreach (var item in carousel.Items)
-                    {
-                        j++;
-                        string isActiveClassName = string.Empty;
-                        if (j == 0)
-                        {
-                            isActiveClassName = "active";
-                        }
-                        else
-                        {
-                            isActiveClassName = string.Empty;
-                        }
-                        <div class="carousel-item @isActiveClassName">
-                            <img src="Images/@item.Image" class="d-block w-100" alt="">
-                            <div class="carousel-caption d-none d-md-block">
-                                @if (!string.IsNullOrWhiteSpace(item.Title))
+    <section class="pb-3" id="home-carousel-section">
+        <div class="container">
+            <div class="row mb-4">
+                <div id="@carousel.UniqueId" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        @{
+                            int i = -1;
+                            foreach (CarouselItem carouselItem in carousel.Items)
+                            {
+                                i++;
+                                string isActiveClassName = string.Empty;
+                                bool isActiveClass = false;
+                                if (i == 0)
                                 {
-                                    <h5 class="text-@item.TextColor">@item.Title</h5>
+                                    isActiveClassName = "active";
+                                    isActiveClass = true;
                                 }
-                                @if (!string.IsNullOrWhiteSpace(item.Description))
+                                else
                                 {
-                                    <p class="text-@item.TextColor">@item.Description</p>
-                                }
-                                @if (!string.IsNullOrWhiteSpace(item.Route))
-                                {
-                                    <a class="btn btn-@item.BackgroundColor" href="@item.Route">En savoir plus</a>
+                                    isActiveClassName = string.Empty;
+                                    isActiveClass = false;
                                 }
 
-                            </div>
-                        </div>
-                    }
-                }
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </section>
-}
-
-<section class="my-5">
-    <div class="container">
-        <div class="row my-2">
-            <div class="col">
-                <div class="display-3 text-center">Réinventez votre intérieur</div>
-            </div>
-        </div>
-        <div class="row my-2">
-            <div class="col-4">
-                <h2>Galerie Rénovation Vous accompagne dans vos projets</h2>
-                <p>Ici un cours texte de présentation qui parle de galerie rénovation, son identité, son but , ce qui fait la différence avec les autres entreprises</p>
-            </div>
-            <div class="col-8">
-                <img class="w-100" src="Images/exx.jpeg">
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="my-5" id="offers">
-    <div class="container">
-        <div class="row my-2">
-            <div class="col">
-                <div class="display-3 text-center">Nos forfaits</div>
-            </div>
-        </div>
-        <div class="row my-2">
-            <div class="col">
-                <div class="card-group">
-                    @if (services is null)
-                    {
-                        <Loading />
-                    }
-                    else
-                    {
-                        int index = -10;
-                        foreach (var service in services)
-                        {
-                            index += 20;
-                            <div class="card shadow-lg bg-light-transparent-@index text-white transparency-90 disable-on-hover">
-                                @if (!string.IsNullOrWhiteSpace(service.Image))
+                                <button type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide-to="@i" aria-label="Slide @i" class="@isActiveClassName" aria-current="@isActiveClass"></button>
+                            }
+                        }
+                    </div>
+                    <div class="carousel-inner">
+                        @{
+                            int j = -1;
+                            foreach (var item in carousel.Items)
+                            {
+                                j++;
+                                string isActiveClassName = string.Empty;
+                                if (j == 0)
                                 {
-                                    <img src="images/@service.Image" class="card-img-top" alt="">
+                                    isActiveClassName = "active";
                                 }
-                                <div class="card-body">
-                                    <h5 class="card-title my-3">@service.Title</h5>
-                                    @if(service.ShortDescriptions.Any())
-                                    {
-                                        <p class="card-text">
-                                            <ul class="list-unstyled">
-                                                @foreach (var description in service.ShortDescriptions)
-                                                {
-                                                    <li class="my-2">@description</li>
-                                                }
-                                            </ul>
-                                        </p>
-                                    }
+                                else
+                                {
+                                    isActiveClassName = string.Empty;
+                                }
+                                <div class="carousel-item @isActiveClassName">
+                                    <img src="images/@item.Image" class="d-block w-100" alt="">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        @if (!string.IsNullOrWhiteSpace(item.Title))
+                                        {
+                                            <h5 class="text-@item.TextColor">@item.Title</h5>
+                                        }
+                                        @if (!string.IsNullOrWhiteSpace(item.Description))
+                                        {
+                                            <p class="text-@item.TextColor">@item.Description</p>
+                                        }
+                                        @if (!string.IsNullOrWhiteSpace(item.Route))
+                                        {
+                                            <a class="btn btn-@item.BackgroundColor" href="@item.Route">En savoir plus</a>
+                                        }
 
+                                    </div>
                                 </div>
-                                <NavLink href="offers/#" class="btn align-center btn-light m-3">En savoir plus</NavLink>
-                            </div>
+                            }
                         }
-                    }
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
         </div>
-        <div class="row my-2">
-            <div class="col">
-                <p class="lead">
-                    Une petite phrase pour conclure la partie services. 
-                    Une petite phrase pour conclure la partie services. 
-                    Une petite phrase pour conclure la partie services. 
-                    Une petite phrase pour conclure la partie services. 
-                    Une petite phrase pour conclure la partie services. 
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section class="my-5 bg-light text-dark" id="products">
-    <div class="container">
-        <div class="row my-2">
-            <div class="col">
-                <h1 class="display-3 text-center">Nos produits phares</h1>
+    <section class="pt-3 pb-5" id="intro">
+        <div class="container">
+            <Heading Title="Réinventez votre intérieur"/>
+            <div class="row mb-4">
+                <div class="col-12 col-md-5">
+                    <h2>Galerie Rénovation Vous accompagne dans vos projets</h2>
+                    <p>Ici un cours texte de présentation qui parle de galerie rénovation, son identité, son but , ce qui fait la différence avec les autres entreprises</p>
+                </div>
+                <div class="col-12 col-md-7">
+                    <img class="w-100" src="images/exx.jpeg">
+                </div>
             </div>
         </div>
-        <div class="row row-cols-1 row-cols-md-4 my-2">
-            @if (products is null)
-            {
-                <Loading />
-            }
-            else
-            {
-                foreach (var product in products)
+    </section>
+
+    <section class="pt-3 pb-5" id="offers">
+        <div class="container">
+            <Heading Title="Nos formules"/>
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="card-group">
+                        @{
+                            int index = -10;
+                            foreach (var service in services)
+                            {
+                                index += 20;
+                                <div class="card shadow-lg bg-light-transparent-@index text-white transparency-90 disable-on-hover">
+                                    @if (!string.IsNullOrWhiteSpace(service.Image))
+                                    {
+                                        <img src="images/@service.Image" class="card-img-top" alt="">
+                                    }
+                                    <div class="card-body">
+                                        <h5 class="card-title my-3">@service.Title</h5>
+                                        @if (service.ShortDescriptions is not null)
+                                        {
+                                            <p class="card-text">
+                                                <ul class="list-unstyled">
+                                                    @foreach (var description in service.ShortDescriptions)
+                                                    {
+                                                        <li class="my-2">@description</li>
+                                                    }
+                                                </ul>
+                                            </p>
+                                        }
+
+                                    </div>
+                                    <NavLink href="offers" class="btn align-center btn-light m-3">En savoir plus...</NavLink>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <p class="lead">
+                        Une petite phrase pour conclure la partie services.
+                        Une petite phrase pour conclure la partie services.
+                        Une petite phrase pour conclure la partie services.
+                        Une petite phrase pour conclure la partie services.
+                        Une petite phrase pour conclure la partie services.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pt-3 pb-5 bg-light text-dark" id="products">
+        <div class="container">
+            <Heading Title="Produits phares"/>
+            <div class="row mb-4 row-cols-2 row-cols-md-4 my-0 g-3 gy-md-0">
+                @foreach (var product in products)
                 {
                     <div class="col">
                         <div class="card h-100 transparency-80 scale-out-10 disable-on-hover text-primary">
-                            @if (product.Images.Any())
+                            @if (product.Images is not null)
                             {
                                 <img src="images/@product.Images.First()" class="card-img-top" alt="@product.Title">
                             }
@@ -189,44 +169,33 @@ else
                         </div>
                     </div>
                 }
-            }
-        </div>
-        <div class="row my-2">
-            <div class="col text-center">
-                <NavLink class="btn btn-outline-dark" href="/Products">Découvrir plus de produits</NavLink>
+            </div>
+            <div class="row mb-4">
+                <div class="col text-center">
+                    <NavLink class="btn btn-outline-dark" href="/Products">Découvrir plus de produits</NavLink>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <p class="lead">
+                        Une petite phrase pour le SEO et identifier le type de produits, la gamme de produits, etc.
+                        Une petite phrase pour le SEO et identifier le type de produits, la gamme de produits, etc.
+                        Une petite phrase pour le SEO et identifier le type de produits, la gamme de produits, etc.
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="row my-2">
-            <div class="col">
-                <p class="lead">
-                    Une petite phrase pour le SEO et identifier le type de produits, la gamme de produits, etc.
-                    Une petite phrase pour le SEO et identifier le type de produits, la gamme de produits, etc.
-                    Une petite phrase pour le SEO et identifier le type de produits, la gamme de produits, etc.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section class="my-5" id="achievements">
-    <div class="container">
-        <div class="row my-2">
-            <div class="col">
-                <h1 class="display-3 text-center">Nos réalisations</h1>
-            </div>
-        </div>
-        <div class="row row-cols-1 row-cols-md-4 my-2">
-            @if (achievements is null)
-            {
-                <Loading />
-            }
-            else
-            {
+    <section class="pt-3 pb-5" id="achievements">
+        <div class="container">
+            <Heading Title="Nos réalisations"/>
+            <div class="row mb-4 row-cols-2 row-cols-md-4 my-0">
                 @foreach (var achievement in achievements)
                 {
-                    <div class="col transparency-80 scale-out-10 disable-on-hover">
+                    <div class="col transparency-80 scale-out-10 disable-on-hover g-3 gy-md-0">
                         <div class="card h-100">
-                            @if (achievement.Images.Any())
+                            @if (achievement.Images is not null)
                             {
                                 <img src="images/@achievement.Images.First()" class="card-img-top" alt="@achievement.Title">
                             }
@@ -236,24 +205,25 @@ else
                         </div>
                     </div>
                 }
-            }
-        </div>
-        <div class="row my-2">
-            <div class="col text-center">
-                <NavLink class="btn btn-outline-light" href="/Achuevements">Explorer nos réalisations chez vous</NavLink>
+
+            </div>
+            <div class="row mb-4">
+                <div class="col text-center">
+                    <NavLink class="btn btn-outline-light" href="/achievements">Explorer nos réalisations chez vous</NavLink>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <p class="lead">
+                        Faire comprendre à nos clients que les précédents ont été satisfaits.
+                        Faire comprendre à nos clients que les précédents ont été satisfaits.
+                        Faire comprendre à nos clients que les précédents ont été satisfaits.
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="row my-2">
-            <div class="col">
-                <p class="lead">
-                    Faire comprendre à nos clients que les précédents ont été satisfaits.
-                    Faire comprendre à nos clients que les précédents ont été satisfaits.
-                    Faire comprendre à nos clients que les précédents ont été satisfaits.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
+}
 
 @code {
     private IEnumerable<Service>? services;
