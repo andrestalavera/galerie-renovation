@@ -38,6 +38,9 @@ jobs:
       #     cache-version: 1
       #     ruby-version: 3.0
 
+      - name: Install dotnet-wasm tool
+        run: dotnet workload install wasm-tools
+
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
@@ -48,11 +51,9 @@ jobs:
           npm install jshint
           npm install grunt
           npm install grunt-cli
-
           npx --package node-sass@latest node-sass --version
           npx --package node-sass@latest node-sass --output-style expanded --source-map true --source-map-contents true wwwroot/scss/ -o wwwroot/css/
           ls -Al wwwroot/css
-
           npm install grunt
           npm install grunt-cli
           npm install grunt-contrib-uglify
@@ -62,7 +63,6 @@ jobs:
           grunt cssmin
           grunt uglify
           cd ..
-
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
