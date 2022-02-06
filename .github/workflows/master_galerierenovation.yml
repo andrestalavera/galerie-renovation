@@ -28,26 +28,26 @@ jobs:
           node-version: 16.x
 
       - name: Install dotnet-wasm tool
-        run: dotnet workload install wasm-tools
+        run: |
+          dotnet workload install wasm-tools
 
-      - name: Install dotnet-libman tool
-        run: dotnet tool install Microsoft.Web.LibraryManager.Cli -g
+      - name: dotnet-libman
+        run: |
+          cd GalerieRenovation.Web
+          dotnet tool install Microsoft.Web.LibraryManager.Cli -g
+          libman --version
+          libman restore --verbosity detailed
 
-      - name: Change directory to `GalerieRenovation.Web`
-        run: cd GalerieRenovation.Web
-
-      - name: Check libman version
-        run: libman --version
-
-      - name: Restore libman libraries
-        run: libman restore
-
-      - name: Build
+      - name: Npm
         run: |
           ls
+          echo Install JSHINT
           npm install jshint --verbose
+          echo install GRUNT
           npm install grunt --verbose
+          echo install GRUNT CLI
           npm install grunt-cli --verbose
+          echo compile SCSS with sass
           npx -p sass@latest sass wwwroot/scss/galerie-renovation.scss:css/galerie-renovation.css --verbose
           ls wwwroot/css
           npm install grunt-contrib-uglify --verbose
