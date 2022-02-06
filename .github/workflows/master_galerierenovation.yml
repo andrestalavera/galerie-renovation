@@ -44,11 +44,17 @@ jobs:
 
       - name: Build
         run: |
+          echo Go GalerieRenovation.Web
+          cd GalerieRenovation.Web
           ls
           npm install jshint --verbose
           npm install grunt --verbose
           npm install grunt-cli --verbose
-          npx -p sass@latest sass wwwroot/scss/galerie-renovation.scss:css/galerie-renovation.css --verbose
+          cd wwwroot
+          ls
+          mkdir css
+          ls
+          npx -p sass@latest sass scss/galerie-renovation.scss:css/galerie-renovation.css --verbose
           ls wwwroot/css
           npm install grunt-contrib-uglify --verbose
           npm install grunt-contrib-cssmin --verbose
