@@ -12,10 +12,6 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    
-    strategy:
-      matrix:
-        node-version: [ 16.x] #12.x, 14.x,
 
     steps:
       - uses: actions/checkout@v2
@@ -26,40 +22,32 @@ jobs:
           dotnet-version: '6.0.x'
           include-prerelease: true
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
-
-      # - name: Set up Ruby
-      #   uses: ruby/setup-ruby@v1
-      #   with:
-      #     bundler-cache: true
-      #     cache-version: 1
-      #     ruby-version: 3.0
+          node-version: 16.x
 
       - name: Install dotnet-wasm tool
         run: dotnet workload install wasm-tools
-
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
 
       - name: Build
         run: |
           cd GalerieRenovation.Web
           ls
-          npm install jshint
-          npm install grunt
-          npm install grunt-cli
-          npm install sass
-          sass wwwroot/scss/galeire-renovation.scss:css/galerie-renovation.css
+          npm install jshint --verbose
+          npm install grunt --verbose
+          npm install grunt-cli --verbose
+          npx -p sass@latest sass wwwroot/scss/galerie-renovation.scss:css/galerie-renovation.css --verbose
           ls wwwroot/css
-          npm install grunt-contrib-uglify
-          npm install grunt-contrib-cssmin
+          npm install grunt-contrib-uglify --verbose
+          npm install grunt-contrib-cssmin --verbose
           ls
-          grunt cssmin
-          grunt uglify
+          grunt cssmin --verbose
+          grunt uglify --verbose
           cd ..
+
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
