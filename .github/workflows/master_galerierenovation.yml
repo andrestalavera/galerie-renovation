@@ -33,6 +33,9 @@ jobs:
       - name: Install dotnet-libman tool
         run: dotnet tool install Microsoft.Web.LibraryManager.Cli -g
 
+      - name: Change directory to `GalerieRenovation.Web`
+        run: cd GalerieRenovation.Web
+
       - name: Check libman version
         run: libman --version
 
@@ -41,7 +44,6 @@ jobs:
 
       - name: Build
         run: |
-          cd GalerieRenovation.Web
           ls
           npm install jshint --verbose
           npm install grunt --verbose
