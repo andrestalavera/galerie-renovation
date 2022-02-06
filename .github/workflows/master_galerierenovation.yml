@@ -47,15 +47,15 @@ jobs:
       - name: Build
         run: |
           cd GalerieRenovation.Web
-          ls -Al
+          ls
           npm install jshint
           npm install grunt
           npm install grunt-cli
           npm install sass
-          ls -Al wwwroot/css
+          ls wwwroot/css
           npm install grunt-contrib-uglify
           npm install grunt-contrib-cssmin
-          ls -Al
+          ls
           grunt cssmin
           grunt uglify
           cd ..
