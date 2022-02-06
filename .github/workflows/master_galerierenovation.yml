@@ -52,6 +52,7 @@ jobs:
           npm install grunt
           npm install grunt-cli
           npm install sass
+          sass wwwroot/scss/galeire-renovation.scss:css/galerie-renovation.css
           ls wwwroot/css
           npm install grunt-contrib-uglify
           npm install grunt-contrib-cssmin
