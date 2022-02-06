@@ -30,6 +30,15 @@ jobs:
       - name: Install dotnet-wasm tool
         run: dotnet workload install wasm-tools
 
+      - name: Install dotnet-libman tool
+        run: dotnet tool install Microsoft.Web.LibraryManager.Cli -g
+
+      - name: Check libman version
+        run: libman --version
+
+      - name: Restore libman libraries
+        run: libman restore
+
       - name: Build
         run: |
           cd GalerieRenovation.Web
