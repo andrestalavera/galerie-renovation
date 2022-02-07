@@ -86,9 +86,9 @@ jobs:
       #     package: .
       - name: Deploy to Azure Static Web App
         uses: Azure/static-web-apps-deploy@v1
-          with: 
-            azure_static_web_apps_api_token: ${{ secrets.GALERIE_RENOVATION_APITOKEN }}
-            repo_token: ${{ secrets.GITHUB_TOKEN }}
-            action: "upload"
-            app_location: "GalerieRenovation.Web/wwwroot"
-            output_location: "GalerieRenovation.Web/bin/Release/net6.0/publish/wwwroot" # Built app content directory - optional
+        with: 
+          azure_static_web_apps_api_token: ${{ secrets.GALERIE_RENOVATION_APITOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "GalerieRenovation.Web/wwwroot"
+          output_location: "GalerieRenovation.Web/bin/Release/net6.0/publish/wwwroot" # Built app content directory - optional
