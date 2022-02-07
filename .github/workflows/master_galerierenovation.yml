@@ -42,7 +42,7 @@ jobs:
         run: |
           cd GalerieRenovation.Web
           ls
-          cd wwwwroot
+          cd wwwroot
           mkdir css
           cd ..
           echo "CssFolderCreated"
