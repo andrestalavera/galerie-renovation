@@ -27,11 +27,10 @@ jobs:
         with:
           node-version: 16.x
 
-      - name: Install dotnet-wasm tool
-        run: |
-          dotnet workload install wasm-tools
+      - name: dotnet-wasm workload
+        run: dotnet workload install wasm-tools
 
-      - name: dotnet-libman
+      - name: dotnet-libman tool
         run: |
           cd GalerieRenovation.Web
           dotnet tool install Microsoft.Web.LibraryManager.Cli -g
@@ -41,9 +40,9 @@ jobs:
       - name: Npm
         run: |
           cd GalerieRenovation.Web
-          npm install jshint
-          npm install grunt
-          npm install grunt-cli
+          npm install jshint --verbose
+          npm install grunt --verbose
+          npm install grunt-cli --verbose
           npx -p sass@latest sass wwwroot/scss/galerie-renovation.scss:css/galerie-renovation.css --verbose
           npm install grunt-contrib-uglify --verbose
           npm install grunt-contrib-cssmin --verbose
@@ -54,13 +53,19 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
+      - name: List files and subfiles before publish
+        run: ls -lR
+
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/gr-app
+
+      - name: List files and subfiles after publish
+        run: ls -lR
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: .gr-app
+          name: gr-app
           path: ${{env.DOTNET_ROOT}}/gr-app
 
   deploy:
