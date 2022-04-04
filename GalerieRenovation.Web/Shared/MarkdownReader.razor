@@ -1,0 +1,43 @@
+@using Markdig
+@using Markdig.Extensions.AutoLinks
+
+@inject HttpClient httpClient;
+
+@if (IsLoading)
+{
+    <Loading />
+}
+else
+{
+    @PageContent
+}
+
+@code {
+    [Parameter]
+    public string? File { get; set; }
+
+    public MarkupString PageContent { get; set; }
+    public bool IsLoading { get; set; } = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        string content = await httpClient.GetStringAsync($"data/{File}.md");
+        Console.WriteLine(content);
+
+        var pipeline = new MarkdownPipelineBuilder()
+        .UseAdvancedExtensions()
+        .UseBootstrap()
+        .UseCustomContainers()
+        .UseAutoLinks(new AutoLinkOptions
+            {
+                OpenInNewWindow = true
+            })
+        .UseGridTables()
+        .UsePipeTables()
+        .UseMediaLinks()
+        .Build();
+        var html = Markdown.ToHtml(content, pipeline);
+        PageContent = new(html);
+        IsLoading = false;
+    }
+}

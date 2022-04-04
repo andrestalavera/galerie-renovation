@@ -1,5 +1,13 @@
-﻿@using System.ComponentModel.DataAnnotations
+﻿@page "/informations/devenir-apporteur-d-affaires"
+
 <PageTitle>Devenir apporteur d'affaires - Galerie Rénovation</PageTitle>
+<div class="container">
+    <div class="row my-3">
+        <div class="col">
+            <MarkdownReader File="about-businessdev-fr" />
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="business-dev-modal" tabindex="-1" aria-labelledby="business-dev-modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -33,14 +41,16 @@
                     </div>
 
                     <div class="form-check">
-                        <InputCheckbox class="form-check-input" type="checkbox" id="subscribeToNewsletterCheckbox" @bind-Value="businessDevContext.SubscribeToNewsletter"/>
+                        <InputCheckbox class="form-check-input" type="checkbox" id="subscribeToNewsletterCheckbox" @bind-Value="businessDevContext.SubscribeToNewsletter" />
                         <label class="form-check-label" for="subscribeToNewsletterCheckbox">
                             Permettre à la société "Galerie Rénovation" d'émettre régulièrement des courriels d'information.
                         </label>
                     </div>
 
-                    <p class="small">En remplissant ce formulaire, vous acceptez qu'on vous contacte avec les informations que vous avez saisies. 
-                        Conformément à la loi Informatique et libertés, vous pouvez toujours nous contacter pour modifier ou supprimer vos informations personnelles.</p>
+                    <p class="small">
+                        En remplissant ce formulaire, vous acceptez qu'on vous contacte avec les informations que vous avez saisies.
+                        Conformément à la loi Informatique et libertés, vous pouvez toujours nous contacter pour modifier ou supprimer vos informations personnelles.
+                    </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
