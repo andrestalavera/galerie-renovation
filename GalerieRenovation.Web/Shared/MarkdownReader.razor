@@ -5,7 +5,7 @@
 
 @if (IsLoading)
 {
-    <Loading />
+    <Loading/>
 }
 else
 {
@@ -21,6 +21,10 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        if (string.IsNullOrWhiteSpace(File))
+        {
+            File = "error";
+        }
         string content = await httpClient.GetStringAsync($"data/{File}.md");
         Console.WriteLine(content);
 

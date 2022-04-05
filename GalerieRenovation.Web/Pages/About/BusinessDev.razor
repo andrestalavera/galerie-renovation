@@ -21,35 +21,43 @@
 
                     <div class="mb-3">
                         <label for="nameInput" class="form-label">Nom et prénom :</label>
-                        <InputText type="text" class="form-control" id="nameInput" placeholder="John Doe" @bind-Value="businessDevContext.Names" />
+                        <InputText type="text" class="form-control" id="nameInput" placeholder="John Doe"
+                            @bind-Value="businessDevContext.Names" />
                     </div>
 
                     <div class="mb-3">
                         <label for="emailInput" class="form-label">Courriel :</label>
-                        <InputText type="email" class="form-control" id="emailInput" placeholder="name@example.com" @bind-value="businessDevContext.Email" ValueExpression="@(() => businessDevContext.Email)" />
+                        <InputText type="email" class="form-control" id="emailInput" placeholder="name@example.com"
+                            @bind-value="businessDevContext.Email"
+                            ValueExpression="@(() => businessDevContext.Email)" />
                     </div>
 
                     <div class="mb-3">
                         <label for="phoneNumberInput" class="form-label">Numéro de téléphone :</label>
-                        <InputText type="text" class="form-control" id="phoneNumberInput" placeholder="06 00 00 00 00" @bind-Value="businessDevContext.Phone" />
+                        <InputText type="text" class="form-control" id="phoneNumberInput" placeholder="06 00 00 00 00"
+                            @bind-Value="businessDevContext.Phone" />
                     </div>
 
                     <div class="mb-3">
                         <label for="messageInput" class="form-label">Adresse :</label>
                         <InputTextArea class="form-control" id="messageInput" @bind-Value="businessDevContext.Address"
-                                       placeholder="1 rue des Tuelleries, 67000 Strasbourg" />
+                            placeholder="1 rue des Tuelleries, 67000 Strasbourg" />
                     </div>
 
                     <div class="form-check">
-                        <InputCheckbox class="form-check-input" type="checkbox" id="subscribeToNewsletterCheckbox" @bind-Value="businessDevContext.SubscribeToNewsletter" />
+                        <InputCheckbox class="form-check-input" type="checkbox" id="subscribeToNewsletterCheckbox"
+                            @bind-Value="businessDevContext.SubscribeToNewsletter" />
                         <label class="form-check-label" for="subscribeToNewsletterCheckbox">
-                            Permettre à la société "Galerie Rénovation" d'émettre régulièrement des courriels d'information.
+                            Permettre à la société "Galerie Rénovation" d'émettre régulièrement des courriels
+                            d'information.
                         </label>
                     </div>
 
                     <p class="small">
-                        En remplissant ce formulaire, vous acceptez qu'on vous contacte avec les informations que vous avez saisies.
-                        Conformément à la loi Informatique et libertés, vous pouvez toujours nous contacter pour modifier ou supprimer vos informations personnelles.
+                        En remplissant ce formulaire, vous acceptez qu'on vous contacte avec les informations que vous
+                        avez saisies.
+                        Conformément à la loi Informatique et libertés, vous pouvez toujours nous contacter pour
+                        modifier ou supprimer vos informations personnelles.
                     </p>
                 </div>
                 <div class="modal-footer">

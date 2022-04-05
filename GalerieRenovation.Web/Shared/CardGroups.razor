@@ -1,0 +1,50 @@
+<div class="card-group">
+    @if (Items is null || !Items.Any())
+    {
+        <Loading />
+    }
+    else
+    {
+        int index = -10;
+        foreach (CardItem cardItem in Items)
+        {
+            index += 20;
+            <div class="card shadow-lg bg-light-transparent-@index text-white transparency-90 disable-on-hover">
+                @if (!string.IsNullOrWhiteSpace(cardItem.ImageUrl))
+                {
+                    <img src="images/@cardItem.ImageUrl" class="card-img-top" alt="">
+                }
+                <div class="card-body">
+                    <h5 class="card-title my-3">@cardItem.Title</h5>
+                    @if (!string.IsNullOrWhiteSpace(cardItem.Text))
+                    {
+                        <p class="card-text">
+                            @cardItem.Text
+                        </p>
+                    }
+                    @if (cardItem.Items is not null)
+                    {
+                        <p class="card-text">
+                            <ul class="list-unstyled">
+                                @foreach (string item in cardItem.Items)
+                                {
+                                    <li class="my-2">@item</li>
+                                }
+                            </ul>
+                        </p>
+                    }
+                </div>
+                @if (!string.IsNullOrWhiteSpace(cardItem.Target))
+                {
+                    <NavLink href="@cardItem.Target" class="btn align-center btn-light m-3">
+                        En savoir plus...
+                    </NavLink>
+                }
+            </div>
+        }
+    }
+</div>
+@code {
+    [Parameter]
+    public IEnumerable<CardItem>? Items { get; set; }
+}

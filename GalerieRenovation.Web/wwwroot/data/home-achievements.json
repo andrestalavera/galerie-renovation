@@ -1,34 +1,22 @@
 ﻿[
   {
     "title": "Salon de coiffure",
-    "description": "",
-    "location": "Strasbourg",
-    "images": [
-      "ex1.jpg"
-    ]
+    "text": "Strasbourg",
+    "imageUrl": "coretec-nueltin-50LVRE122-amb.jpg"
   },
   {
     "title": "Restaurant",
-    "description": "",
-    "location": "Strasbourg",
-    "images": [
-      "ex2.jpg"
-    ]
+    "text": "Strasbourg",
+    "imageUrl": "coretec-erie-50LVRE112-amb.jpg"
   },
   {
     "title": "Salle polyvalente",
-    "description": "",
-    "location": "Reichschoffen",
-    "images": [
-      "ex3.jpg"
-    ]
+    "text": "Reichschoffen",
+    "imageUrl": "coretec-calgary-50LVRE132.jpg"
   },
   {
     "title": "Appartement d'un particulier",
-    "description": "",
-    "location": "Lampertheim",
-    "images": [
-      "ex3t.jpg"
-    ]
+    "text": "Lampertheim",
+    "imageUrl": "coretec-erie-50LVRE112-amb.jpg"
   }
 ]

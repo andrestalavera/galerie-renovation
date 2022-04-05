@@ -1,43 +1,22 @@
 ﻿[
   {
-    "title": "Baguettes",
-    "subtitle": "",
-    "description": "",
-    "price": 90,
-    "unit": "m²",
-    "images": [
-      "baguettes-001.jpeg"
-    ]
+    "title": "Sols élégants",
+    "text": "Différents coloris, hydrofuges, ...",
+    "imageUrl": "coretec-champlain-50.jpg"
   },
   {
     "title": "Marmbre noir",
-    "subtitle": "",
-    "description": "",
-    "price": 90,
-    "unit": "m²",
-    "images": [
-      "marbre-noir-001.jpeg",
-      "exx.jpeg"
-    ]
+    "text": "90m²",
+    "imageUrl": "coretec-calgary-50LVRE132.jpg"
   },
   {
     "title": "Sol",
-    "subtitle": "",
-    "description": "",
-    "price": 90,
-    "unit": "m²",
-    "images": [
-      "dekton-001.jpeg"
-    ]
+    "text": "90m²",
+    "imageUrl": "coretec-erie-50LVRE112-amb.jpg"
   },
   {
     "title": "Sol",
-    "subtitle": "",
-    "description": "",
-    "price": 90,
-    "unit": "m²",
-    "images": [
-      "dekton-001.jpeg"
-    ]
+    "text": "90m²",
+    "imageUrl": "coretec-nueltin-50LVRE122-amb.jpg"
   }
 ]

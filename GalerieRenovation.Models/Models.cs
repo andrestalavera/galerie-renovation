@@ -1,15 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace GalerieRenovation.Models;
 
-namespace GalerieRenovation.Models;
-
-public record Service(string Seo,
+public record CardItem(string Seo,
+    string? Header,
     string? Title,
-    string? Subtitle,
-    string? Description1,
-    string? Description2,
-    string? Image,
-    IEnumerable<string>? Descriptions,
-    IEnumerable<string>? ShortDescriptions);
+    string? Text,
+    string? Target,
+    string? ImageUrl,
+    string? Footer,
+    IEnumerable<string>? Items);
 
 public record Carousel(string UniqueId,
     IEnumerable<CarouselItem> Items);
@@ -29,7 +27,6 @@ public record Achievement(string Title,
     IEnumerable<string>? Images);
 
 public record Product(string Title,
-    string? Subtitle,
     string? Description,
     double? Price,
     string? Unit,
