@@ -1,55 +1,33 @@
 ﻿[
   {
-    "title": "Architecture d'intérieur",
-    "subtitle": "Première étape - RDV Conseils - Diagnostic d'intérieur 70 € / heure",
-    "description1": "L'architecte d'intérieur travail avec vous sur votre projet et vous apporte immédiatement des solutions d'aménagements/de rénovations.",
-    "description2": "",
-    "descriptions": [
-    ],
-    "shortDescriptions": [
-      "Conseils diagnostic d'architecte d'intérieur",
-      "Etude de votre projet d'architecture d'intérieur",
-      "Suivi et coordination des travaux"
+    "title": "Conseils",
+    "imageUrl": "",
+    "target": "services/conseils-decoration-interieur-etude-devis-gratuit",
+    "items": [
+      "Diagnostic de décoration d'intérieur",
+      "Etude de votre projet",
+      "Devis gratuit"
     ]
   },
   {
-    "title": "Décoration d'intérieur",
-    "subtitle": "",
-    "description1": "",
-    "description2": "",
-    "descriptions": [
-    ],
-    "shortDescriptions": [
-      "Conseils diagnostic de décoration d'intérieur",
-      "Etude de votre projet de décoration d'intérieur",
-      "Suivi et coordination des travaux",
-      "Suivi des artisans, commandes, shopping et aménagement final"
-    ]
-  },
-  {
-    "title": "Relooking d’intérieur/coaching déco",
-    "subtitle": "",
-    "description1": "",
-    "description2": "",
-    "descriptions": [
-    ],
-    "shortDescriptions": [
-      "Conseils de Relooking d'intérieur",
-      "Coach Shopping",
-      "Mise en scène finale"
-    ]
-  },
-  {
-    "title": "Architecture commerciale",
-    "subtitle": "",
-    "description1": "",
-    "description2": "",
-    "descriptions": [
-    ],
-    "shortDescriptions": [
+    "title": "Organisation",
+    "image": "",
+    "target": "services/organisation-conseils-suivis-artisants-commandes-achats-travaux",
+    "items": [
       "Conseils",
-      "Étude de votre projet de rénovation commerciale et tertiaire",
-      "Suivi et coordination des travaux d’aménagement commercial"
+      "Artisants",
+      "Commandes & achats",
+      "Travaux"
+    ]
+  },
+  {
+    "title": "Aménagement final",
+    "image": "",
+    "target": "services/amenagement-final-nettoyage-chantier-mobilier-installation",
+    "items": [
+      "Nettoyage apprfondi des chantiers",
+      "Mise en place du mobilier",
+      "Installation de certains de vos appareils"
     ]
   }
 ]

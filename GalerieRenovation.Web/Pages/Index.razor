@@ -31,7 +31,8 @@ else
                                     isActiveClass = false;
                                 }
 
-                                <button type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide-to="@i" aria-label="Slide @i" class="@isActiveClassName" aria-current="@isActiveClass"></button>
+                                <button type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide-to="@i"
+                                aria-label="Slide @i" class="@isActiveClassName" aria-current="@isActiveClass"></button>
                             }
                         }
                     </div>
@@ -71,11 +72,13 @@ else
                             }
                         }
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#@carousel.UniqueId"
+                        data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#@carousel.UniqueId" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#@carousel.UniqueId"
+                        data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
@@ -86,11 +89,14 @@ else
 
     <section class="pt-3 pb-5" id="intro">
         <div class="container">
-            <Heading Title="Réinventez votre intérieur"/>
+            <HeadingComponent Title="Réinventez votre intérieur" />
             <div class="row mb-4">
                 <div class="col-12 col-md-5">
                     <h2>Galerie Rénovation Vous accompagne dans vos projets</h2>
-                    <p>Ici un cours texte de présentation qui parle de galerie rénovation, son identité, son but , ce qui fait la différence avec les autres entreprises</p>
+                    <p>
+                        Ici un cours texte de présentation qui parle de galerie rénovation, son identité, son but , ce qui
+                        fait la différence avec les autres entreprises
+                    </p>
                 </div>
                 <div class="col-12 col-md-7">
                     <img class="w-100" src="images/exx.jpeg">
@@ -101,51 +107,10 @@ else
 
     <section class="pt-3 pb-5" id="offers">
         <div class="container">
-            <Heading Title="Nos formules"/>
+            <Heading Title="Nos services" />
             <div class="row mb-4">
                 <div class="col">
-                    <div class="card-group">
-                        @{
-                            int index = -10;
-                            foreach (var service in services)
-                            {
-                                index += 20;
-                                <div class="card shadow-lg bg-light-transparent-@index text-white transparency-90 disable-on-hover">
-                                    @if (!string.IsNullOrWhiteSpace(service.Image))
-                                    {
-                                        <img src="images/@service.Image" class="card-img-top" alt="">
-                                    }
-                                    <div class="card-body">
-                                        <h5 class="card-title my-3">@service.Title</h5>
-                                        @if (service.ShortDescriptions is not null)
-                                        {
-                                            <p class="card-text">
-                                                <ul class="list-unstyled">
-                                                    @foreach (var description in service.ShortDescriptions)
-                                                    {
-                                                        <li class="my-2">@description</li>
-                                                    }
-                                                </ul>
-                                            </p>
-                                        }
-
-                                    </div>
-                                    <NavLink href="offers" class="btn align-center btn-light m-3">En savoir plus...</NavLink>
-                                </div>
-                            }
-                        }
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col">
-                    <p class="lead">
-                        Une petite phrase pour conclure la partie services.
-                        Une petite phrase pour conclure la partie services.
-                        Une petite phrase pour conclure la partie services.
-                        Une petite phrase pour conclure la partie services.
-                        Une petite phrase pour conclure la partie services.
-                    </p>
+                    <CardGroups Items="services" />
                 </div>
             </div>
         </div>
@@ -153,34 +118,21 @@ else
 
     <section class="pt-3 pb-5 bg-light text-dark" id="products">
         <div class="container">
-            <Heading Title="Produits phares"/>
-            <div class="row mb-4 row-cols-2 row-cols-md-4 my-0 g-3 gy-md-0">
-                @foreach (var product in products)
-                {
-                    <div class="col">
-                        <div class="card h-100 transparency-80 scale-out-10 disable-on-hover text-primary">
-                            @if (product.Images is not null)
-                            {
-                                <img src="images/@product.Images.First()" class="card-img-top" alt="@product.Title">
-                            }
-                            <div class="card-body">
-                                <h5 class="card-title">@product.Title</h5>
-                            </div>
-                        </div>
-                    </div>
-                }
+            <Heading Title="Produits phares" />
+            <div class="row mb-4">
+                <GridCards Items="products" />
             </div>
             <div class="row mb-4">
                 <div class="col text-center">
-                    <NavLink class="btn btn-outline-dark" href="/Products">Découvrir plus de produits</NavLink>
+                    <NavLink class="btn btn-outline-dark" href="/Products">
+                        Découvrir plus de produits
+                    </NavLink>
                 </div>
             </div>
             <div class="row mb-4">
                 <div class="col">
                     <p class="lead">
-                        Une petite phrase pour le SEO et identifier le type de produits, la gamme de produits, etc.
-                        Une petite phrase pour le SEO et identifier le type de produits, la gamme de produits, etc.
-                        Une petite phrase pour le SEO et identifier le type de produits, la gamme de produits, etc.
+                        <MarkdownReader File="index/products-footer" />
                     </p>
                 </div>
             </div>
@@ -189,35 +141,21 @@ else
 
     <section class="pt-3 pb-5" id="achievements">
         <div class="container">
-            <Heading Title="Nos réalisations"/>
-            <div class="row mb-4 row-cols-2 row-cols-md-4 my-0">
-                @foreach (var achievement in achievements)
-                {
-                    <div class="col transparency-80 scale-out-10 disable-on-hover g-3 gy-md-0">
-                        <div class="card h-100">
-                            @if (achievement.Images is not null)
-                            {
-                                <img src="images/@achievement.Images.First()" class="card-img-top" alt="@achievement.Title">
-                            }
-                            <div class="card-body">
-                                <h5 class="card-title">@achievement.Title</h5>
-                            </div>
-                        </div>
-                    </div>
-                }
-
+            <Heading Title="Nos réalisations" />
+            <div class="row mb-4">
+                <GridCards Items="achievements" />
             </div>
             <div class="row mb-4">
                 <div class="col text-center">
-                    <NavLink class="btn btn-outline-light" href="/achievements">Explorer nos réalisations chez vous</NavLink>
+                    <NavLink class="btn btn-outline-light" href="/achievements">
+                        Explorer nos réalisations chez vous
+                    </NavLink>
                 </div>
             </div>
             <div class="row mb-4">
                 <div class="col">
                     <p class="lead">
-                        Faire comprendre à nos clients que les précédents ont été satisfaits.
-                        Faire comprendre à nos clients que les précédents ont été satisfaits.
-                        Faire comprendre à nos clients que les précédents ont été satisfaits.
+                        <MarkdownReader File="index/achievements-footer" />
                     </p>
                 </div>
             </div>
@@ -226,16 +164,16 @@ else
 }
 
 @code {
-    private IEnumerable<Service>? services;
-    private IEnumerable<Product>? products;
-    private IEnumerable<Achievement>? achievements;
+    private IEnumerable<CardItem>? services;
+    private IEnumerable<CardItem>? products;
+    private IEnumerable<CardItem>? achievements;
     private Carousel? carousel;
 
     protected override async Task OnInitializedAsync()
     {
         carousel = await Http.GetFromJsonAsync<Carousel>("data/home-carousel.json");
-        services = await Http.GetFromJsonAsync<IEnumerable<Service>>("data/home-services.json");
-        products = await Http.GetFromJsonAsync<IEnumerable<Product>>("data/home-products.json");
-        achievements = await Http.GetFromJsonAsync<IEnumerable<Achievement>>("data/home-achievements.json");
+        services = await Http.GetFromJsonAsync<IEnumerable<CardItem>>("data/home-services.json");
+        products = await Http.GetFromJsonAsync<IEnumerable<CardItem>>("data/home-products.json");
+        achievements = await Http.GetFromJsonAsync<IEnumerable<CardItem>>("data/home-achievements.json");
     }
 }

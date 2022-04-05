@@ -1,0 +1,27 @@
+@if (Items is null || !Items.Any())
+{
+    <Loading />
+}
+else
+{
+    foreach (CardItem cardItem in Items)
+    {
+        <div class="col">
+            <div class="card h-100 transparency-80 scale-out-10 disable-on-hover text-primary">
+                @if (!string.IsNullOrWhiteSpace(cardItem.ImageUrl))
+                {
+                    <img src="images/@cardItem.ImageUrl" class="card-img-top" alt="@cardItem.Title">
+                }
+                <div class="card-body">
+                    <h5 class="card-title">@cardItem.Title</h5>
+                    <div class="card-text">@cardItem.Text</div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@code {
+    [Parameter]
+    public IEnumerable<CardItem>? Items { get; set; }
+}
