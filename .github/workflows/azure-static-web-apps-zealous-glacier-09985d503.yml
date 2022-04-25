@@ -31,6 +31,7 @@ jobs:
       uses: github/codeql-action/init@v1
       with:
         languages: ${{ matrix.language }}
+        working-directory: GalerieRenovation.Web
     - name: Autobuild
       uses: github/codeql-action/autobuild@v1
 
