@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:azure": "npm i --verbose && grunt clean && grunt sass && grunt cssmin && grunt uglify"
+    "build:azure": "npm ci --verbose && grunt clean && grunt sass && grunt cssmin && grunt uglify"
   },
   "repository": {
     "type": "git",
