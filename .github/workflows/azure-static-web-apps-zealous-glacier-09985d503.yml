@@ -10,17 +10,6 @@ on:
       - master
 
 jobs:
-  install_ruby:
-    runs-on: ubuntu-latest
-    name: Install Ruby
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: "2.7"
-          bundler-cache: true
-      - run: gem install sass
-
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
@@ -57,6 +46,14 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
+
+      - uses: actions/setup-ruby@v1
+        name: Setup Ruby 2.7 with bundler cache and install Sass
+        with:
+          ruby-version: "2.7"
+          bundler-cache: true
+        run: gem install sass
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
