@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "gem install Sass --verbose",
     "build:azure": "npm ci --verbose && npm i grunt-cli --verbose && grunt clean --verbose && grunt sass --verbose && grunt cssmin --verbose && grunt uglify --verbose"
   },
   "repository": {
