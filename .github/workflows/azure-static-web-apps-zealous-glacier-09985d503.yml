@@ -47,12 +47,14 @@ jobs:
         with:
           submodules: true
 
-      - uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         name: Setup Ruby 2.7 with bundler cache and install Sass
         with:
           ruby-version: "2.7"
           bundler-cache: true
-      - run: gem install sass
+      - run: |
+          bundle exec rake --verbose
+          gem install sass --verbose
 
       - name: Build And Deploy
         id: builddeploy
