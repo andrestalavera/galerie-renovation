@@ -52,7 +52,7 @@ jobs:
         with:
           ruby-version: "2.7"
           bundler-cache: true
-        run: gem install sass
+      - run: gem install sass
 
       - name: Build And Deploy
         id: builddeploy
