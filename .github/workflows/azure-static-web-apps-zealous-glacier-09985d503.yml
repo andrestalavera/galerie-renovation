@@ -52,9 +52,7 @@ jobs:
         with:
           ruby-version: "2.7"
           bundler-cache: true
-      - run: |
-          bundle exec rake --verbose
-          gem install sass --verbose
+      - run: gem install sass --verbose
 
       - name: Build And Deploy
         id: builddeploy
