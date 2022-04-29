@@ -53,8 +53,15 @@ jobs:
       #     ruby-version: "2.7"
       #     bundler-cache: true
       # - run: gem install sass --verbose
-
-      - name: dotnet build && dotnet publish
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.4
+      
+      - name: Restore
+        run: dotnet restore
+      
+      - name: Build and publish GalerieRenovation.Web to `../gr`
         run: |
           cd GalerieRenovation.Web
           dotnet build -c Release
