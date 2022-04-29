@@ -64,7 +64,7 @@ jobs:
       - name: Build and publish GalerieRenovation.Web to `../gr`
         run: |
           cd GalerieRenovation.Web
-          dotnet workload install wasm
+          dotnet workload install wasm-tools
           dotnet build -c Release
           dotnet publish -c Release -o ../gr
 
