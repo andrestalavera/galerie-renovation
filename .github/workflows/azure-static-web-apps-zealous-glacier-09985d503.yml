@@ -10,33 +10,33 @@ on:
       - master
 
 jobs:
-  analyze:
-    name: Analyze
-    runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
+  # analyze:
+  #   name: Analyze
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     actions: read
+  #     contents: read
+  #     security-events: write
 
-    strategy:
-      fail-fast: false
-      matrix:
-        language: ["javascript"]
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       language: ["javascript"]
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v2
 
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v1
-        with:
-          languages: ${{ matrix.language }}
-          working-directory: GalerieRenovation.Web
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v1
+  #     - name: Initialize CodeQL
+  #       uses: github/codeql-action/init@v1
+  #       with:
+  #         languages: ${{ matrix.language }}
+  #         working-directory: GalerieRenovation.Web
+  #     - name: Autobuild
+  #       uses: github/codeql-action/autobuild@v1
 
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v1
+  #     - name: Perform CodeQL Analysis
+  #       uses: github/codeql-action/analyze@v1
 
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
@@ -47,21 +47,32 @@ jobs:
         with:
           submodules: true
 
-      - uses: ruby/setup-ruby@v1
-        name: Setup Ruby 2.7 with bundler cache and install Sass
+      # - uses: ruby/setup-ruby@v1
+      #   name: Setup Ruby 2.7 with bundler cache and install Sass
+      #   with:
+      #     ruby-version: "2.7"
+      #     bundler-cache: true
+      # - run: gem install sass --verbose
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
         with:
-          ruby-version: "2.7"
-          bundler-cache: true
-      - run: gem install sass --verbose
+          dotnet-version: "6.0.x"
 
-      - name: Build And Deploy
+      - name: Build and publish GalerieRenovation.Web to `../gr`
+        run: |
+          dotnet workload install wasm-tools --verbosity detailed
+          cd GalerieRenovation.Web
+          dotnet build -c Release
+          dotnet publish -c Release -o ../gr
+
+      - name: Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ZEALOUS_GLACIER_09985D503 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "GalerieRenovation.Web"
+          app_location: "gr"
           # api_location: "GalerieRenovation.ApiFunctions"
           output_location: "wwwroot"
 
