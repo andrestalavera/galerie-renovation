@@ -58,13 +58,10 @@ jobs:
         with:
           dotnet-version: "6.0.x"
 
-      - name: Restore
-        run: dotnet restore
-
       - name: Build and publish GalerieRenovation.Web to `../gr`
         run: |
+          dotnet workload install wasm-tools --verbosity detailed
           cd GalerieRenovation.Web
-          dotnet workload install wasm-tools
           dotnet build -c Release
           dotnet publish -c Release -o ../gr
 
