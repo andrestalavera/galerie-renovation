@@ -1,9 +1,12 @@
 ﻿@using System.ComponentModel.DataAnnotations
+@using GalerieRenovation.Web.Services
+
+@inject IContactService contactService;
 
 <div class="modal fade" id="contact-modal" tabindex="-1" aria-labelledby="contact-modal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <EditForm Model="@contactContext">
+            <EditForm Model="@contactContext" OnSubmit="@HandleValidSubmit">
                 <div class="modal-header">
                     <h5 class="modal-title">Laissez-nous vos coordonnées</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -32,7 +35,7 @@
                     </div>
 
                     <div class="form-check">
-                        <InputCheckbox class="form-check-input" type="checkbox" id="subscribeToNewsletterCheckbox" @bind-Value="contactContext.SubscribeToNewsletter"/>
+                        <InputCheckbox class="form-check-input" type="checkbox" id="subscribeToNewsletterCheckbox" @bind-Value="contactContext.Newsletter"/>
                         <label class="form-check-label" for="subscribeToNewsletterCheckbox">
                             Permettre à la société "Galerie Rénovation" d'émettre régulièrement des courriels d'information.
                         </label>
@@ -50,7 +53,7 @@
 </div>
 
 @code {
-    private ContactContext contactContext = new();
+    private ContactModel contactContext = new();
     private EditContext? editContext;
 
     protected override void OnInitialized()
@@ -58,7 +61,11 @@
         editContext = new(contactContext);
     }
 
-    private void HandleValidSubmit()
+    private async Task HandleValidSubmit()
     {
+        if (editContext is not null && editContext.Validate())
+        {
+            await contactService.Send(contactContext);
+        }
     }
 }

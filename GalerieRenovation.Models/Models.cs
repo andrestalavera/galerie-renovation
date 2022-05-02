@@ -1,4 +1,6 @@
-﻿namespace GalerieRenovation.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace GalerieRenovation.Models;
 
 public record CardItem(string Seo,
     string? Header,
@@ -35,22 +37,27 @@ public record Product(string Title,
 
 public abstract class ContactContextBase
 {
+    [Required]
     public string? Names { get; set; }
 
+    [Required]
+    [EmailAddress]
     public string? Email { get; set; }
 
+    [Phone]
     public string? Phone { get; set; }
 
-    public bool SubscribeToNewsletter { get; set; }
+    public bool Newsletter { get; set; } = true;
 }
 
-public class ContactContext : ContactContextBase
+public class ContactModel : ContactContextBase
 {
+    [Required]
     public string? Message { get; set; }
 
 }
 
 public class BusinessDevContext : ContactContextBase
 {
-    public string Address { get; set; }
+    public string? Address { get; set; }
 }
