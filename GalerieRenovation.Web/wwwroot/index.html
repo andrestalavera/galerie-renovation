@@ -30,6 +30,26 @@
 </head>
 
 <body>
+    <div class="bg-primary position-fixed fixed-top" id="blazor-error-ui" style="display:none">
+        <div class="container">
+            <div class="card text-dark bg-warning mb-3">
+                <div class="card-body" role="alert">
+                    <div class="card-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Ooops !
+                    </div>
+                    <div class="card-text">
+                        Une erreur s'est produite lors du chargement du site <a href="/">www.galerierenovation.com</a>.
+                        <br />
+                        Nous vous invitons à reéssayer ultérieurement.
+                        <br />
+                        Si le problème persiste, n'hésitez pas à nous contacter.
+                    </div>
+                    <a href="./" class="btn btn-primary">Fermer</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="app" class="bg-primary text-light">
         <div id="loading" class="position-absolute top-50 start-50 translate-middle">
             <div class="text-center text-light m-2">
@@ -37,13 +57,6 @@
                     <span class="visually-hidden">...</span>
                 </div>
                 <div class="lead">Chargement en cours...</div>
-            </div>
-        </div>
-    </div>
-    <div class="container" id="blazor-error-ui">
-        <div class="row py-5">
-            <div class="alert alert-danger" role="alert">
-                Une erreur s'est produite.
             </div>
         </div>
     </div>
