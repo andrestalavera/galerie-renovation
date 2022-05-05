@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using GalerieRenovation.Models;
+using GalerieRenovation.ApiFunctions.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -43,26 +44,20 @@ public static class ContactFunction
 
     private static async Task<MailMessage> GetMessageAsync(HttpRequest request)
     {
-        if (request.Body is null)
-        {
-            ArgumentNullException.ThrowIfNull(request.Body);
-        }
+        ArgumentNullException.ThrowIfNull(request.Body);
         string body = await new StreamReader(request.Body).ReadToEndAsync();
         ContactModel contactModel = JsonConvert.DeserializeObject<ContactModel>(body);
         MailMessage mailMessage = new()
         {
-            Body = BuildEmail(contactModel),
+            Body = EmailHelpers.BuildEmail(BuildEmailContent(contactModel)),
             IsBodyHtml = true,
             Priority = MailPriority.High,
             Subject = "Contact www.galerierenovation.com"
         };
         string? grAddress = Environment.GetEnvironmentVariable("OFFICE365_USERNAME");
-        if (string.IsNullOrEmpty(grAddress))
-        {
-            ArgumentNullException.ThrowIfNull(grAddress);
-        }
-        mailMessage.From = new(grAddress);
+        ArgumentNullException.ThrowIfNull(grAddress);
         mailMessage.To.Add(new(grAddress));
+        mailMessage.From = new(grAddress, $"{contactModel.Names} <{contactModel.Email}>");
         if (mailMessage.ReplyToList.Any(mm => mm.Address.Equals(grAddress, StringComparison.InvariantCultureIgnoreCase)))
         {
             mailMessage.ReplyToList.Remove(mailMessage.ReplyToList.First(x => x.Address.Equals(grAddress, StringComparison.InvariantCultureIgnoreCase)));
@@ -71,38 +66,36 @@ public static class ContactFunction
         {
             ArgumentNullException.ThrowIfNull(contactModel.Email);
         }
+
         mailMessage.ReplyToList.Add(contactModel.Email);
         return mailMessage;
     }
 
-    private static string BuildEmail(ContactModel contactModel)
+    private static string BuildEmailContent(ContactModel contactModel)
     {
-        StringBuilder builder = new ();
+        StringBuilder builder = new();
         builder.Append("<table>");
+
         builder.Append("<tr>");
-
-        builder.Append("<td>");
-        builder.Append("Expéditeur :");
-        builder.Append("</td>");
-        builder.Append("<td>");
-        builder.Append(contactModel.Names);
-        builder.Append("</td>");
-
-        builder.Append("<td>");
-        builder.Append("Courriel :");
-        builder.Append("</td>");
-        builder.Append("<td>");
-        builder.Append(contactModel.Email);
-        builder.Append("</td>");
-
-        builder.Append("<td>");
-        builder.Append("Téléphone :");
-        builder.Append("</td>");
-        builder.Append("<td>");
-        builder.Append(contactModel.Phone);
-        builder.Append("</td>");
-
+        builder.Append("<td>Expéditeur :</td>");
+        builder.Append($"<td>{contactModel.Names}</td>");
         builder.Append("</tr>");
+
+        builder.Append("<tr>");
+        builder.Append("<td>Courriel :</td>");
+        builder.Append($"<td>{contactModel.Email}</td>");
+        builder.Append("</tr>");
+
+        builder.Append("<tr>");
+        builder.Append("<td>Téléphone :</td>");
+        builder.Append($"<td>{contactModel.Phone}</td>");
+        builder.Append("</tr>");
+
+        builder.Append("<tr>");
+        builder.Append("<td>Message :</td>");
+        builder.Append($"<td>{contactModel.Message}</td>");
+        builder.Append("</tr>");
+
         builder.Append("</table>");
         return builder.ToString();
     }
@@ -113,18 +106,9 @@ public static class ContactFunction
         string? password = Environment.GetEnvironmentVariable("OFFICE365_PASSWORD");
         string? host = Environment.GetEnvironmentVariable("OFFICE365_HOST");
 
-        if (string.IsNullOrWhiteSpace(username))
-        {
-            ArgumentNullException.ThrowIfNull(username);
-        }
-        if (string.IsNullOrWhiteSpace(password))
-        {
-            ArgumentNullException.ThrowIfNull(password);
-        }
-        if (string.IsNullOrWhiteSpace(host))
-        {
-            ArgumentNullException.ThrowIfNull(host);
-        }
+        ArgumentNullException.ThrowIfNull(username);
+        ArgumentNullException.ThrowIfNull(password);
+        ArgumentNullException.ThrowIfNull(host);
 
         NetworkCredential credential = new(username, password);
 
