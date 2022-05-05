@@ -2,10 +2,12 @@
 using System.Net.Http.Json;
 
 namespace GalerieRenovation.Web.Services;
+
 public interface IContactService
 {
-    Task Send(ContactModel contact);
+    Task<bool> SendEmailAsync(ContactModel contact);
 }
+
 public class ContactService : IContactService
 {
     private readonly IHttpClientFactory httpClientFactory;
@@ -17,7 +19,7 @@ public class ContactService : IContactService
         this.logger = logger;
     }
 
-    public async Task Send(ContactModel contact)
+    public async Task<bool> SendEmailAsync(ContactModel contact)
     {
         logger.LogInformation("Attempt to POST data");
         if (contact is null)
@@ -26,6 +28,7 @@ public class ContactService : IContactService
         }
 
         HttpClient client = httpClientFactory.CreateClient("contact");
-        await client.PostAsJsonAsync("ContactFunction", contact);
+        var response = await client.PostAsJsonAsync("ContactFunction", contact);
+        return response.IsSuccessStatusCode;
     }
 }
