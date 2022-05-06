@@ -1,11 +1,12 @@
 @using Markdig
 @using Markdig.Extensions.AutoLinks
 
-@inject HttpClient httpClient;
+@inject IHttpClientFactory httpClientFactory
+@inject ILogger<MarkdownReader> logger
 
 @if (IsLoading)
 {
-    <Loading/>
+    <Loading />
 }
 else
 {
@@ -23,25 +24,39 @@ else
     {
         if (string.IsNullOrWhiteSpace(File))
         {
-            File = "error";
+            Console.WriteLine($"{File} (file name) is null or whitespace");
         }
-        string content = await httpClient.GetStringAsync($"data/{File}.md");
-        Console.WriteLine(content);
+        else
+        {
+            HttpClient httpClient = httpClientFactory.CreateClient("data");
+            string content = await httpClient.GetStringAsync($"data/{File}.md");
 
-        var pipeline = new MarkdownPipelineBuilder()
-        .UseAdvancedExtensions()
-        .UseBootstrap()
-        .UseCustomContainers()
-        .UseAutoLinks(new AutoLinkOptions
+            Console.WriteLine($"{File} content: {content}");
+
+            if (string.IsNullOrWhiteSpace(content))
             {
-                OpenInNewWindow = true
-            })
-        .UseGridTables()
-        .UsePipeTables()
-        .UseMediaLinks()
-        .Build();
-        var html = Markdown.ToHtml(content, pipeline);
-        PageContent = new(html);
+                Console.WriteLine($"{File} content is empty");
+            }
+            else
+            {
+                MarkdownPipeline pipeline = new MarkdownPipelineBuilder()
+                    .UseAdvancedExtensions()
+                    .UseBootstrap()
+                    .UseCustomContainers()
+                    .UseAutoLinks(new AutoLinkOptions
+                        {
+                            OpenInNewWindow = true
+                        })
+                    .UseGridTables()
+                    .UsePipeTables()
+                    .UseMediaLinks()
+                    .Build();
+                string html = Markdown.ToHtml(content, pipeline);
+                Console.WriteLine("html:" + html);
+                PageContent = new(html);
+            }
+        }
         IsLoading = false;
+        Console.WriteLine("IsLoading: " + IsLoading);
     }
 }
