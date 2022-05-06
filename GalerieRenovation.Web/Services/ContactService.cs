@@ -27,7 +27,7 @@ public class ContactService : IContactService
             ArgumentNullException.ThrowIfNull(contact);
         }
 
-        HttpClient client = httpClientFactory.CreateClient("contact");
+        HttpClient client = httpClientFactory.CreateClient("functions");
         var response = await client.PostAsJsonAsync("ContactFunction", contact);
         return response.IsSuccessStatusCode;
     }
