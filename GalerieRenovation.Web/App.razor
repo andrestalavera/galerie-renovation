@@ -4,12 +4,34 @@
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
     <NotFound>
-        <PageTitle>Not found</PageTitle>
+        <PageTitle>Page ou ressource non trouvée - Galerie Rénovatio</PageTitle>
         <LayoutView Layout="@typeof(MainLayout)">
             <div class="container">
-                <div class="row py-5">
-                    <div class="alert alert-danger" role="alert">
-                        Erreur 404 : Page introuvable.
+                <div class="row my-3 text-center">
+                    <div class="col">
+                        <div class="display-3">
+                            Page ou ressource non trouvée
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <p class="lead">
+                            La page que vous cherchez n'existe pas ou plus.
+                        </p>
+                        <p class="lead">
+                            Nous vous invitons à aller sur notre <NavLink href="./">page d'accueil</NavLink>.
+                        </p>
+                        <p class="lead">
+                            Nous sommes navrés pour le désagrément encouru et nous vous prions de bien vouloir nous en excuser.
+                        </p>
+                        <p class="lead">
+                            Pour toute question ou suggestion, vous pouvez utiliser le
+                            <NavLink data-bs-toggle="modal" data-bs-target="#contact-modal" class="navlink text-light">formulaire de contact</NavLink>.
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <img class="img-fluid" src="images/under-construction.jpg" alt="Galerie Rénovation - site en construction - situation représentée par une salle de bain en rénovation" />
                     </div>
                 </div>
             </div>
@@ -17,10 +39,8 @@
     </NotFound>
     <Navigating>
         <PageTitle>Chargement de Galerie Rénovation</PageTitle>
-        <LayoutView>
-            <LayoutView Layout="@typeof(MainLayout)">
-                <Loading />
-            </LayoutView>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <Loading />
         </LayoutView>
     </Navigating>
 </Router>
