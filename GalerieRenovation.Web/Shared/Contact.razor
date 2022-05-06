@@ -1,64 +1,115 @@
 ﻿@using System.ComponentModel.DataAnnotations
+@using GalerieRenovation.Web.Services
+@using static GalerieRenovation.Web.Services.Helpers
 
-<div class="modal fade" id="contact-modal" tabindex="-1" aria-labelledby="contact-modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <EditForm Model="@contactContext">
-                <div class="modal-header">
-                    <h5 class="modal-title">Laissez-nous vos coordonnées</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+@inject IContactService contactService
+@inject INewsletterService newsletterService
+@inject IJSRuntime JS
+<EditForm Model="contact" OnSubmit="@HandleValidSubmit">
+    <Modal @ref="contactModal" ElementId="contact-modal" IsVerticallyCentered="true" Size="ModalSize.Large" Title="Laissez-nous vos coordonnées" tabindex="-1" aria-labelledby="contact-modal" aria-hidden="true">
+        <BodyTemplate>
+            <div class="mb-3">
+                <ValidationSummary />
+            </div>
+            <div class="mb-3">
+                <label for="nameInput" class="form-label">Nom et prénom :</label>
+                <InputText type="text" class="form-control" id="nameInput" placeholder="John Doe" @bind-Value="contact.Names" />
+            </div>
+
+            <div class="mb-3">
+                <label for="emailInput" class="form-label">Courriel :</label>
+                <InputText type="email" class="form-control" id="emailInput" placeholder="name@example.com" @bind-value="contact.Email" ValueExpression="@(() => contact.Email)" />
+            </div>
+
+            <div class="mb-3">
+                <label for="phoneNumberInput" class="form-label">Numéro de téléphone :</label>
+                <InputText type="text" class="form-control" id="phoneNumberInput" placeholder="06 00 00 00 00" @bind-Value="contact.Phone" />
+            </div>
+
+            <div class="mb-3">
+                <label for="messageInput" class="form-label">Message :</label>
+                <InputTextArea class="form-control" id="messageInput" @bind-Value="contact.Message"
+                               placeholder="Bonjour, j'aimerais rénovation mon appartement. Pouvez-vous me contacter ? Cordialement." />
+            </div>
+
+            <div class="form-check">
+                <InputCheckbox class="form-check-input" type="checkbox" id="subscribeToNewsletterCheckbox" @bind-Value="contact.Newsletter" />
+                <label class="form-check-label" for="subscribeToNewsletterCheckbox">
+                    Permettre à la société "Galerie Rénovation" d'envoyer régulièrement des courriels d'information à l'adresse de courriel saisie ci-dessus.
+                </label>
+            </div>
+
+            <p class="small">En remplissant ce formulaire, vous acceptez qu'on vous contacte avec les informations que vous avez saisies. Conformément à la loi Informatique et libertés, vous pouvez toujours nous contacter pour modifier ou supprimer vos informations personnelles.</p>
+        </BodyTemplate>
+        <FooterTemplate>
+            <div class="container">
+                <div class="row justify-content-end">
+                    <Button Type="ButtonType.Button" Class="col-3 me-3" data-bs-dismiss="modal" Disabled="@isBusy">Annuler</Button>
+                    <Button ElementId="SubmitForm" Type="ButtonType.Submit" Color="ButtonColor.Primary" Class="col-6" Disabled="isBusy">
+                        @if (isBusy)
+                        {
+                            <span class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Envoi en cours...</span>
+                            </span>
+                        }
+                        else
+                        {
+                            <span>Envoyer</span>
+                        }
+                    </Button>
                 </div>
-                <div class="modal-body">
+            </div>
+        </FooterTemplate>
+    </Modal>
+</EditForm>
 
-                    <div class="mb-3">
-                        <label for="nameInput" class="form-label">Nom et prénom :</label>
-                        <InputText type="text" class="form-control" id="nameInput" placeholder="John Doe" @bind-Value="contactContext.Names" />
-                    </div>
+<Toasts class="p-3" Messages="messages" Placement="ToastsPlacement.TopCenter" AutoHide="false" Style="z-index:1200" />
 
-                    <div class="mb-3">
-                        <label for="emailInput" class="form-label">Courriel :</label>
-                        <InputText type="email" class="form-control" id="emailInput" placeholder="name@example.com" @bind-value="contactContext.Email" ValueExpression="@(() => contactContext.Email)" />
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="phoneNumberInput" class="form-label">Numéro de téléphone :</label>
-                        <InputText type="text" class="form-control" id="phoneNumberInput" placeholder="06 00 00 00 00" @bind-Value="contactContext.Phone" />
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="messageInput" class="form-label">Message :</label>
-                        <InputTextArea class="form-control" id="messageInput" @bind-Value="contactContext.Message"
-                                       placeholder="Bonjour, j'aimerais rénovation mon appartement. Pouvez-vous me contacter ? Cordialement." />
-                    </div>
-
-                    <div class="form-check">
-                        <InputCheckbox class="form-check-input" type="checkbox" id="subscribeToNewsletterCheckbox" @bind-Value="contactContext.SubscribeToNewsletter"/>
-                        <label class="form-check-label" for="subscribeToNewsletterCheckbox">
-                            Permettre à la société "Galerie Rénovation" d'émettre régulièrement des courriels d'information.
-                        </label>
-                    </div>
-
-                    <p class="small">En remplissant ce formulaire, vous acceptez qu'on vous contacte avec les informations que vous avez saisies. Conformément à la loi Informatique et libertés, vous pouvez toujours nous contacter pour modifier ou supprimer vos informations personnelles.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-primary">Envoyer</button>
-                </div>
-            </EditForm>
-        </div>
-    </div>
-</div>
 
 @code {
-    private ContactContext contactContext = new();
+    private Modal contactModal;
+    private List<ToastMessage> messages = new();
+    private ContactModel contact = new();
     private EditContext? editContext;
+    private bool isBusy = false;
 
     protected override void OnInitialized()
     {
-        editContext = new(contactContext);
+        editContext = new(contact);
     }
 
-    private void HandleValidSubmit()
+    private async Task HandleValidSubmit()
     {
+        isBusy = true;
+        if (editContext is not null && editContext.Validate())
+        {
+            try
+            {
+                messages.Add(await contactService.SendEmailAsync(contact) ?
+                    GetToastMessage(ToastReason.SendEmailSuccess) :
+                    GetToastMessage(ToastReason.SendEmailFailure));
+            }
+            catch
+            {
+                messages.Add(GetToastMessage(ToastReason.SendEmailFailure));
+            }
+        }
+
+        if (contact.Newsletter)
+        {
+            try
+            {
+                ArgumentNullException.ThrowIfNull(contact.Email);
+                messages.Add(await newsletterService.SubscribeAsync(contact.Email) ?
+                    GetToastMessage(ToastReason.SuscribeNewsletterSuccess) :
+                    GetToastMessage(ToastReason.SuscribeNewsletterFailure));
+            }
+            catch
+            {
+                messages.Add(GetToastMessage(ToastReason.SuscribeNewsletterFailure));
+            }
+        }
+        isBusy = false;
+        await contactModal?.HideAsync();
     }
 }

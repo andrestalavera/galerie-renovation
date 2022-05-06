@@ -73,7 +73,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "gr"
-          # api_location: "GalerieRenovation.ApiFunctions"
+          api_location: "GalerieRenovation.ApiFunctions"
           output_location: "wwwroot"
 
   close_pull_request_job:
