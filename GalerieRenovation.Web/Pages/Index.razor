@@ -1,5 +1,6 @@
 ﻿@page "/"
-@inject HttpClient Http
+@inject IHttpClientFactory httpClientFactory
+
 <PageTitle>Accueil - Galerie Rénovation</PageTitle>
 
 @if (carousel is null || services is null || products is null || achievements is null)
@@ -89,7 +90,7 @@ else
 
     <section class="pt-3 pb-5" id="intro">
         <div class="container">
-            <Heading Title="Réinventez votre intérieur" />
+            <Title Title="Réinventez votre intérieur" />
             <div class="row mb-4">
                 <div class="col-12 col-md-5">
                     <h2>Galerie Rénovation Vous accompagne dans vos projets</h2>
@@ -107,7 +108,7 @@ else
 
     <section class="pt-3 pb-5" id="offers">
         <div class="container">
-            <Heading Title="Nos services" />
+            <Title Title="Nos services" />
             <div class="row mb-4">
                 <div class="col">
                     <CardGroups Items="services" />
@@ -118,7 +119,7 @@ else
 
     <section class="pt-3 pb-5 bg-light text-dark" id="products">
         <div class="container">
-            <Heading Title="Produits phares" />
+            <Title Title="Produits phares" />
             <div class="row mb-4">
                 <GridCards Items="products" />
             </div>
@@ -141,7 +142,7 @@ else
 
     <section class="pt-3 pb-5" id="achievements">
         <div class="container">
-            <Heading Title="Nos réalisations" />
+            <Title Title="Nos réalisations" />
             <div class="row mb-4">
                 <GridCards Items="achievements" />
             </div>
@@ -171,9 +172,10 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        carousel = await Http.GetFromJsonAsync<Carousel>("data/home-carousel.json");
-        services = await Http.GetFromJsonAsync<IEnumerable<CardItem>>("data/home-services.json");
-        products = await Http.GetFromJsonAsync<IEnumerable<CardItem>>("data/home-products.json");
-        achievements = await Http.GetFromJsonAsync<IEnumerable<CardItem>>("data/home-achievements.json");
+        using HttpClient httpClient = httpClientFactory.CreateClient("data");
+        carousel = await httpClient.GetFromJsonAsync<Carousel>("data/home-carousel.json");
+        services = await httpClient.GetFromJsonAsync<IEnumerable<CardItem>>("data/home-services.json");
+        products = await httpClient.GetFromJsonAsync<IEnumerable<CardItem>>("data/home-products.json");
+        achievements = await httpClient.GetFromJsonAsync<IEnumerable<CardItem>>("data/home-achievements.json");
     }
 }
